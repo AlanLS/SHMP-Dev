@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<default-resource-broker image-filename="splash.png" last-generated-image-checksum="3677956396" comment="">
+  <properties>
+    <image preserve-original-palette="false" has-access-to-indexed-pixels="false" locked-color-map="false" median-filter="false" median-filter-error-threshold="12" quality="1.0" bit-depth="8" bit-number="32" component-bit-number="8" color-number="256" format="png" />
+    <generate anim="false" gob="true" tileset="false" fontset="false" />
+  </properties>
+  <gob-header-bits>
+    <property key="Location" value="true" />
+    <property key="Clip" value="true" />
+    <property key="Collision" value="false" />
+    <property key="Flip X" value="false" />
+    <property key="Flip Y" value="false" />
+    <property key="Rotation" value="false" />
+  </gob-header-bits>
+  <gob-collection>
+    <gob name="SPLASH" id="1" clipRectangle="0,0,128,45" collisionRectangle="0,0,0,0" />
+  </gob-collection>
+  <animation-module>
+    <frame-collection />
+    <animation-collection />
+    <collision-type-collection>
+      <collision-type name="">
+        <color red="255" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="175" blue="175" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="200" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="64" green="64" blue="64" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="128" green="128" blue="128" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="192" green="192" blue="192" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="0" alpha="255" />
+      </collision-type>
+    </collision-type-collection>
+  </animation-module>
+  <pngIndexedColorsToPreserve />
+  <lockedColorMap />
+  <loss-less-image-data value="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" />
+  <gridAlignedGobsPerRow value="8" />
+  <gridAlignedCellWidth value="64" />
+  <gridAlignedCellHeight value="64" />
+  <gridAlignedGobXOffset value="2" />
+  <gridAlignedGobYOffset value="2" />
+</default-resource-broker>
+

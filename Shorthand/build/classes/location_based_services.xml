@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<location-based-services xml-version="0.1.0">
+  <criteria horizontal-accuracy="0" vertical-accuracy="0" preferred-response-time="0" preferred-power-consumption="0" cost-required="true" speed-and-course-required="false" altitude-required="false" address-info-required="false" />
+  <location-provider orientation-supported="true" provider-state="1" active-type="SCRIPT">
+    <orientation azimuth="0.0" pitch="0.0" roll="0.0" magnetic="false" />
+    <location-class name="" />
+    <location-random store="" />
+    <location-script type="KML" path="" />
+    <location-static>
+      <location speed="0.0" course="0.0">
+        <qualified-coordinates latitude="34.112669" logitude="-118.338916" altitude="0.0" />
+      </location>
+    </location-static>
+  </location-provider>
+</location-based-services>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<default-resource-broker image-filename="smart1.png" last-generated-image-checksum="1193714795" comment="">
+  <properties>
+    <image preserve-original-palette="false" has-access-to-indexed-pixels="false" locked-color-map="false" median-filter="false" median-filter-error-threshold="12" quality="1.0" bit-depth="8" bit-number="32" component-bit-number="8" color-number="256" format="png" />
+    <generate anim="false" gob="true" tileset="false" fontset="false" />
+  </properties>
+  <gob-header-bits>
+    <property key="Location" value="true" />
+    <property key="Clip" value="true" />
+    <property key="Collision" value="false" />
+    <property key="Flip X" value="false" />
+    <property key="Flip Y" value="false" />
+    <property key="Rotation" value="false" />
+  </gob-header-bits>
+  <gob-collection>
+    <gob name="SMS" id="0" clipRectangle="0,60,33,25" collisionRectangle="0,0,0,0" />
+    <gob name="DATA" id="1" clipRectangle="0,35,38,25" collisionRectangle="0,0,0,0" />
+    <gob name="CIRCLE" id="2" location="1,0" clipRectangle="33,60,17,17" collisionRectangle="0,0,0,0" />
+    <gob name="_1" id="3" location="7,4" clipRectangle="45,35,4,8" collisionRectangle="0,0,0,0" />
+    <gob name="_2" id="4" location="6,5" clipRectangle="40,10,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_3" id="5" location="6,5" clipRectangle="40,18,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_4" id="6" location="6,5" clipRectangle="40,26,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_5" id="7" location="6,5" clipRectangle="38,35,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_6" id="8" location="6,5" clipRectangle="38,43,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_7" id="9" location="6,5" clipRectangle="38,51,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_8" id="10" location="6,5" clipRectangle="33,77,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_9" id="11" location="6,5" clipRectangle="40,77,7,8" collisionRectangle="0,0,0,0" />
+    <gob name="_10" id="12" location="5,3" clipRectangle="40,0,9,10" collisionRectangle="0,0,0,0" />
+    <gob name="SCROLL" id="13" clipRectangle="0,0,40,35" collisionRectangle="0,0,0,0" />
+  </gob-collection>
+  <animation-module>
+    <frame-collection />
+    <animation-collection />
+    <collision-type-collection>
+      <collision-type name="">
+        <color red="255" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="175" blue="175" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="200" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="64" green="64" blue="64" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="128" green="128" blue="128" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="192" green="192" blue="192" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="0" alpha="255" />
+      </collision-type>
+    </collision-type-collection>
+  </animation-module>
+  <pngIndexedColorsToPreserve />
+  <lockedColorMap />
+  <loss-less-image-data value="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" />
+  <gridAlignedGobsPerRow value="8" />
+  <gridAlignedCellWidth value="64" />
+  <gridAlignedCellHeight value="64" />
+  <gridAlignedGobXOffset value="2" />
+  <gridAlignedGobYOffset value="2" />
+</default-resource-broker>
+

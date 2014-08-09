@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<default-resource-broker image-filename="smart1.png" last-generated-image-checksum="3550582535" comment="">
+  <properties>
+    <image preserve-original-palette="false" has-access-to-indexed-pixels="false" locked-color-map="false" median-filter="false" median-filter-error-threshold="12" quality="1.0" bit-depth="8" bit-number="32" component-bit-number="8" color-number="256" format="png" />
+    <generate anim="false" gob="true" tileset="false" fontset="false" />
+  </properties>
+  <gob-header-bits>
+    <property key="Location" value="true" />
+    <property key="Clip" value="true" />
+    <property key="Collision" value="false" />
+    <property key="Flip X" value="false" />
+    <property key="Flip Y" value="false" />
+    <property key="Rotation" value="false" />
+  </gob-header-bits>
+  <gob-collection>
+    <gob name="SMS" id="0" clipRectangle="29,35,25,20" collisionRectangle="0,0,0,0" />
+    <gob name="DATA" id="1" clipRectangle="0,35,29,20" collisionRectangle="0,0,0,0" />
+    <gob name="CIRCLE" id="2" clipRectangle="40,0,10,10" collisionRectangle="0,0,0,0" />
+    <gob name="_1" id="3" location="5,2" clipRectangle="50,0,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_2" id="4" location="5,2" clipRectangle="51,0,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_3" id="5" location="5,2" clipRectangle="52,0,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_4" id="6" location="5,2" clipRectangle="53,0,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_5" id="7" location="5,2" clipRectangle="50,5,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_6" id="8" location="5,2" clipRectangle="51,5,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_7" id="9" location="5,2" clipRectangle="52,5,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_8" id="10" location="5,2" clipRectangle="53,5,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_9" id="11" location="5,2" clipRectangle="40,10,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="_10" id="12" location="5,2" clipRectangle="41,10,1,5" collisionRectangle="0,0,0,0" />
+    <gob name="SCROLL" id="13" clipRectangle="0,0,40,35" collisionRectangle="0,0,0,0" />
+  </gob-collection>
+  <animation-module>
+    <frame-collection />
+    <animation-collection />
+    <collision-type-collection>
+      <collision-type name="">
+        <color red="255" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="175" blue="175" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="200" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="64" green="64" blue="64" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="128" green="128" blue="128" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="192" green="192" blue="192" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="0" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="255" blue="0" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="0" green="0" blue="255" alpha="255" />
+      </collision-type>
+      <collision-type name="">
+        <color red="255" green="255" blue="0" alpha="255" />
+      </collision-type>
+    </collision-type-collection>
+  </animation-module>
+  <pngIndexedColorsToPreserve />
+  <lockedColorMap />
+  <loss-less-image-data value="iVBORw0KGgoAAAANSUhEUgAAADYAAAA3CAYAAABHGbl4AAAD+klEQVR42u2ZW0iUQRSAf+vBIrpI&#xA;DxVWDz4UZoRk+ZCQ1/KCBRYrm6xuIGlKmlveE9FMcr2AQdn1pRuBUGRqKV7W0hWjxYcKIWSjiB6i&#xA;2qw187aeZpYZmdb9d13b/XeVGTg4O3PmzPlmzpmZXYXs7GzwZBFIAYBlSOTTo8Z7E9++NJlMJjX6&#xA;HED7Z2ZmgBUBD67rD/VIoWAIYPXUr58tw/WVMCCLgv5DITCYlghfNW1G1JeyKMFQWW8aH7/xJj8d&#xA;NMF+0BuxC3ojA+H5/h1I/OFLd9sE0glcjGAnPz+8/6c7aDNoY4OhL2Yv9EXvAW1MMLwI2wkDR8Nh&#xA;2mi8IVgWTweb/vP72uvcE/BkrQBdu7fA89AAeIF2rSdkO7RvWwdPfZeD8d2QdtHtmGlysm6o7Cw8&#xA;XiFA6wYkm7zMMK0bBWheL8Czrd4w9uljp8vAqruioOSqHEoajoG684AzQzHK8FL7AUNgwUBmQPT3&#xA;sbcArxRxWCfXJWC1vWFQducInD2Xbpay20dRW7izwLyQJOmvqKHZB8GsFKBplWDewZ59/jD6fngQ&#xA;9a9xOlhNTwSU3koEVUHG7N2jys+E0puJUKOJdMpxT4585fd+zfu3BVkwmC4HfUPt1NQPQxNq9xWs&#xA;lf8BU3ei8GuQQ86ZU3MuVtz2v2HJghG4ONPY2OXJkZEHqF6ExM/pF3RV+0EovqSA0zlZoq8G3Fdc&#xA;r4CqtugFg8066mhZCNjFlhgoVCvn/SwqqDqOxsR6MJg2DCofxUNeRarDb76886lw4WE81PaFeRZY&#xA;Ncqn8vsJ/xwSjgo+VMrvJphzcyE55hKwisbDUFitNDunKsyAM0UnHRI8RpWXaQ5hbMsjc0zq171L&#xA;d4yDcTAOtjRPRZeDLdl7zF0vD0lzTMq3ouSHh1Sve7ecilJ/H5P0uJfqG7Rb7jFX/ubh9gvaVb9S&#xA;8ZcHB+NgHEx6sMXwH02HS3Jy8sIHe/KcHIyDcTAOxsFsTZKSkhKlUCgKqCQlJflY9qMxacz4NFaf&#xA;ipj+fMDQnH7UDtKVsX5Zs2tNf84kpPM6NYTqeqVSGcQ4pUNioMC4j9HV4ToWMX17YNhJPCd2kNiq&#xA;YvwC3E9sdGAR07cKxq4MBaUQqN6IP7M6zAp2sG1i+rbAiB29ZaRQP0gUYZjreD4xfbtgrMPEmIw4&#xA;rLcHJqZvLxQJhIEsioxpk+EIYOodYvp2wYiBRrwieDATywY25CzBbOnP9/CgIDSPyRzYeR0NRzF9&#xA;m2DEuUYyIA3XaQ6xIWoNzJa+nRzzYcMK5wz1icwho/6RHLOqL3Z46Ely6hgjOnaHCDRQo1bARPVt&#xA;gZGw1dH58WLgMRTMYoc6xPT5Bc3BOBgH42Bs+QtRy8oBTOv1GAAAAABJRU5ErkJggg==" />
+  <gridAlignedGobsPerRow value="8" />
+  <gridAlignedCellWidth value="64" />
+  <gridAlignedCellHeight value="64" />
+  <gridAlignedGobXOffset value="2" />
+  <gridAlignedGobYOffset value="2" />
+</default-resource-broker>
+

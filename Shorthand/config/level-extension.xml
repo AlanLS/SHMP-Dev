@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension-config class-dir="LevelEditor/classes" default-properties-entity="">
+  <entity-editor-gobs>
+    <keys />
+    <values />
+  </entity-editor-gobs>
+  <tileset-group>
+    <keys />
+    <values />
+  </tileset-group>
+  <reference-build-set>
+    <reference-build-configs />
+  </reference-build-set>
+</extension-config>
+

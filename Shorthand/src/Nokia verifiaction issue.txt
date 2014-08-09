@@ -1,0 +1,190 @@
+
+06/13/14 11:51:14 PM: Application Started
+06/13/14 11:51:18 PM: Message before encode=MPLUS (STARTUP) FONEREG ()!*UIDA0000000000,DTTM201406132351,PROV1.00.06Testing-1.0.6-Generic13th11:GenericUnsigned:J2ME:NokiaE72-2:true*! sa
+06/13/14 11:51:19 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:51:25 PM: Sent DATA Request App Name = Startup Shortcode = 09223170750 QueryType = Registration sent Message = MPLUS (STARTUP) FONEREG ()!*UIDA0000000000,DTTM201406132351,PROV1.00.06Testing-1.0.6-Generic13th11:GenericUnsigned:J2ME:NokiaE72-2:true*! sa SequenceNumber = sa
+06/13/14 11:51:26 PM: Sync with SMS handler
+06/13/14 11:51:26 PM: Data Length1 23
+06/13/14 11:51:26 PM: Succesfully retrieved Number of byte =23 Message = (1/1)!*UCNFX975543972*!
+06/13/14 11:51:26 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:51:26 PM: Logging for Receive, association and Display Increment Count of Message Received  0 Milisec
+Identify Message Sender in Local Memory  0 Milisec
+Chat Message Association End  0 Milisec
+Filtered in memmory association files 0 Milisec
+Populateed the Association DTO 2 Milisec
+Find the Attributes of Sequence Numebr and PartInde 1 Milisec
+Received Message Formed into Display format 15 Milisec
+
+06/13/14 11:51:26 PM: Pool Timer Stoped
+06/13/14 11:51:26 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:51:28 PM: Poll added to the Queue : 2000
+06/13/14 11:51:28 PM: Message before encode=MPLUS !*POLL,PROV1.00.06Testing-1.0.6-Generic13th11:GenericUnsigned:J2ME:NokiaE72-2:true*!
+06/13/14 11:51:28 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:51:30 PM: Sent DATA Request App Name = Shorthand Shortcode = 09223170750 QueryType = null sent Message = MPLUS !*POLL,PROV1.00.06Testing-1.0.6-Generic13th11:GenericUnsigned:J2ME:NokiaE72-2:true*! SequenceNumber = s
+06/13/14 11:51:30 PM: Sync with SMS handler
+06/13/14 11:51:30 PM: Data Length1 100
+06/13/14 11:51:30 PM: Succesfully retrieved Number of byte =100 Message = (1/1a)STARTUP
+Successfully registered!!*PCNF000000000000:,PIPESocket,UCNF0000003240,ULOCNULL:India*!
+06/13/14 11:51:30 PM: Pool Timer Stoped
+06/13/14 11:51:30 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:51:32 PM: Poll added to the Queue : 2000
+06/13/14 11:51:32 PM: Logging for Receive, association and Display Increment Count of Message Received  0 Milisec
+Identify Message Sender in Local Memory  0 Milisec
+Chat Message Association End  0 Milisec
+Filtered in memmory association files 1 Milisec
+Populateed the Association DTO 0 Milisec
+Find the Attributes of Sequence Numebr and PartInde 0 Milisec
+Received Message Formed into Display format 0 Milisec
+Received Message stored into inbox Startup 146 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 396 Milisec
+
+06/13/14 11:51:33 PM: Message before encode=MPLUS !*POLL*!
+06/13/14 11:51:33 PM: Socket Connection Not Open java.lang.IllegalArgumentException
+06/13/14 11:51:33 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:51:35 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:51:36 PM: Sent DATA Request App Name = Shorthand Shortcode = 09223170750 QueryType = null sent Message = MPLUS !*POLL*! SequenceNumber = s
+06/13/14 11:51:36 PM: Sync with SMS handler
+06/13/14 11:51:36 PM: 0 City: 4
+06/13/14 11:51:36 PM: Empty Data Received 
+06/13/14 11:51:36 PM: Pool Timer Stoped
+06/13/14 11:51:36 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:51:36 PM: Pool Timer Stoped
+06/13/14 11:51:36 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:51:36 PM: Message before encode=MPLUS (MSGPLUS) CITYLIST!*RTDA014a*! sb
+06/13/14 11:51:36 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:51:40 PM: Sent DATA Request App Name = VMP Shortcode = 09223170750 QueryType = Cities sent Message = MPLUS (MSGPLUS) CITYLIST!*RTDA014a*! sb SequenceNumber = sb
+06/13/14 11:51:40 PM: Sync with SMS handler
+06/13/14 11:51:40 PM: Empty Data Received 
+06/13/14 11:51:40 PM: Pool Timer Stoped
+06/13/14 11:51:40 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:51:41 PM: Pool Timer Stoped
+06/13/14 11:51:41 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:51:43 PM: Poll added to the Queue : 2000
+06/13/14 11:51:43 PM: Message before encode=MPLUS !*POLL*!
+06/13/14 11:51:43 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:51:44 PM: Sent DATA Request App Name = Shorthand Shortcode = 09223170750 QueryType = null sent Message = MPLUS !*POLL*! SequenceNumber = s
+06/13/14 11:51:44 PM: Sync with SMS handler
+06/13/14 11:51:44 PM: Data Length1 204
+06/13/14 11:51:44 PM: Succesfully retrieved Number of byte =204 Message = (1/1b)Message+
+Ahmedabad
+Bangalore
+Bhopal
+Bhubaneswar
+Chandigarh
+Chennai
+Cochin
+Delhi
+Gurgaon
+Hyderabad
+Jaipur
+Kanpur
+Kolkata
+Lucknow
+Madurai
+Mumbai
+Nagpur
+Nashik
+Patna
+Pune
+Surat
+Thiruvananthapuram
+*EOL*
+06/13/14 11:51:45 PM: Pool Timer Stoped
+06/13/14 11:51:45 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:51:45 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:51:45 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:51:46 PM: Logging for Receive, association and Display Time for Match text=  1 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 70 Milisec
+Increment Count of Message Received  1 Milisec
+Identify Message Sender in Local Memory  0 Milisec
+Chat Message Association End  0 Milisec
+Filtered in memmory association files 1 Milisec
+Populateed the Association DTO 0 Milisec
+Find the Attributes of Sequence Numebr and PartInde 1 Milisec
+Received Message Formed into Display format 0 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 997 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 998 Milisec
+
+06/13/14 11:51:46 PM: Pool Timer Stoped
+06/13/14 11:51:46 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:52:16 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:18 PM: 1 Name: 4
+06/13/14 11:52:27 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:32 PM: 2 Age: 4
+06/13/14 11:52:35 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:37 PM: 3 Gender: 4
+06/13/14 11:52:38 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:39 PM: Message before encode=MPLUS (MSGPLUS) LOCREG_NAK (Nokia e72)(31)(M)(Chennai,India)!*RTDA009b*! sc
+06/13/14 11:52:39 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:52:41 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:42 PM: 0 Country 2
+06/13/14 11:52:43 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:44 PM: 1 Phone Number 2
+06/13/14 11:52:46 PM: Sent DATA Request App Name = VMP Shortcode = 09223170750 QueryType = Network Registration sent Message = MPLUS (MSGPLUS) LOCREG_NAK (Nokia e72)(31)(M)(Chennai,India)!*RTDA009b*! sc SequenceNumber = sc
+06/13/14 11:52:46 PM: Poll added to the Queue : 60000
+06/13/14 11:52:46 PM: Sync with SMS handler
+06/13/14 11:52:46 PM: Empty Data Received 
+06/13/14 11:52:46 PM: Pool Timer Stoped
+06/13/14 11:52:46 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:52:46 PM: Message before encode=MPLUS !*POLL*!
+06/13/14 11:52:46 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:52:47 PM: Sent DATA Request App Name = Shorthand Shortcode = 09223170750 QueryType = null sent Message = MPLUS !*POLL*! SequenceNumber = s
+06/13/14 11:52:47 PM: Sync with SMS handler
+06/13/14 11:52:47 PM: Empty Data Received 
+06/13/14 11:52:47 PM: Pool Timer Stoped
+06/13/14 11:52:47 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:52:47 PM: Pool Timer Stoped
+06/13/14 11:52:47 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:52:50 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:52:55 PM: Message before encode=MPLUS (MSGPLUS) MSISDN_CHK +918754415792 sd
+06/13/14 11:52:55 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:52:56 PM: Sent DATA Request App Name = VMP Shortcode = 09223170750 QueryType = Phone Confirmation sent Message = MPLUS (MSGPLUS) MSISDN_CHK +918754415792 sd SequenceNumber = sd
+06/13/14 11:52:56 PM: Sync with SMS handler
+06/13/14 11:52:56 PM: Empty Data Received 
+06/13/14 11:52:56 PM: Pool Timer Stoped
+06/13/14 11:52:56 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:52:56 PM: Pool Timer Stoped
+06/13/14 11:52:56 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:52:58 PM: Poll added to the Queue : 2000
+06/13/14 11:52:58 PM: Message before encode=MPLUS !*POLL*!
+06/13/14 11:52:58 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:52:59 PM: Sent DATA Request App Name = Shorthand Shortcode = 09223170750 QueryType = null sent Message = MPLUS !*POLL*! SequenceNumber = s
+06/13/14 11:52:59 PM: Sync with SMS handler
+06/13/14 11:52:59 PM: Data Length1 131
+06/13/14 11:52:59 PM: Succesfully retrieved Number of byte =131 Message = (1/1d)Message+
+We sent an SMS with a 4-digit code to +918754415792. Please come back to the Message+ App when you receive the code.
+06/13/14 11:52:59 PM: Pool Timer Stoped
+06/13/14 11:52:59 PM: Pool Timer Started With Interval : 2000
+06/13/14 11:53:00 PM: Incoming message not saved in Inbox Message+
+06/13/14 11:53:00 PM: Logging for Receive, association and Display Time for Match text=  2 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 38 Milisec
+Time for Match text=  1 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 42 Milisec
+Time for Match text=  1 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 45 Milisec
+Time for Match text=  9 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 45 Milisec
+Time for Match text=  1 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 42 Milisec
+Time for Match text=  0 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 37 Milisec
+Time for Match text=  0 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 38 Milisec
+Increment Count of Message Received  0 Milisec
+Identify Message Sender in Local Memory  0 Milisec
+Chat Message Association End  0 Milisec
+Filtered in memmory association files 0 Milisec
+Populateed the Association DTO 1 Milisec
+Find the Attributes of Sequence Numebr and PartInde 0 Milisec
+Received Message Formed into Display format 0 Milisec
+Received Message stored into inbox Message+ 194 Milisec
+Time for Match text=  0 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 66 Milisec
+Loaded DAT/Info screen after the Propagete, ignore and keyword 66 Milisec
+
+06/13/14 11:53:01 PM: Pool Timer Stoped
+06/13/14 11:53:01 PM: Pool Timer Started With Interval : 60000
+06/13/14 11:53:14 PM: Message before encode=MPLUS (MSGPLUS) CODE_CHK (+918754415792) (3504)!*RTDA004d*! se
+06/13/14 11:53:14 PM: Invoked -http://mpluspoll.shorthandmobile.com/datarequest.aspx?v=2&SenderUID=0000000002&msg=MPLUS
+06/13/14 11:54:01 PM: Poll added to the Queue : 60000
+06/13/14 11:58:14 PM: Upload Url http://mplusapphandler.shorthandmobile.com/uploadlog.aspx?filename=Log_1402684094159_UID0000003240_Unsigned_1.0.6.txtApplication Version 1.00.06
