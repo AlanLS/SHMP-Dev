@@ -1,13 +1,9 @@
 
-import com.sun.lwuit.Button;
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Component;
 import com.sun.lwuit.Container;
-import com.sun.lwuit.Display;
-import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.List;
-import com.sun.lwuit.TextArea;
 import com.sun.lwuit.TextField;
 import com.sun.lwuit.VirtualKeyboard;
 import com.sun.lwuit.events.ActionEvent;
@@ -28,7 +24,6 @@ import java.util.Vector;
  */
 public class LWFormEAT extends LWForm implements ActionListener, SelectionListener, FocusListener
 {
-
     protected LWListModel listModel = null;
     protected boolean listOnly = true;
     protected boolean gridView = false;
@@ -249,12 +244,11 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         System.out.println("cmp= " + cmp + " cmd= " + cmd);
         if (cmp != null)
         {
-           // if (cmp.getClass() == List.class)
-           // {
-           //     int selectedIdx = listModel.getSelectedIndex();
-           //     ObjectBuilderFactory.GetKernel()
-           //             .handleItemSelection(act.getListItemIds()[selectedIdx], act.getListItems()[selectedIdx]);
-           // }
+           if (cmp.getClass() == List.class)
+            {
+                int idx = listModel.getSelectedIndex();
+                ObjectBuilderFactory.GetKernel().handleItemSelection(act.getListItemIds()[idx], act.getListItems()[idx]);
+             }
         }
         else if (cmd != null)
         {

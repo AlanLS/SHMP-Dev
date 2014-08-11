@@ -30,7 +30,7 @@ public class LWEATActionDTO extends LWDTO
 
     private String[] escapeText = null;
     private byte[] escapeIDs = null;
-    private int escTextColor = 0x00FF00;   // text color or any other default color  
+    private int escTextColor = 0x007F4F;   // text color or any other default color  
 
     /**
      * @return the entryBoxEnabled
