@@ -121,7 +121,11 @@ abstract public class LWForm extends Form
     
     public void setCurrentOptionList(Command[] optList)
     {
-        removeAllCommands();
+        if (this.getCommandCount() > 0)
+        {
+            removeAllCommands();
+        }
+        
         addCommand(getBackCommand());
           
         for (int i=0; i<optList.length; ++i)

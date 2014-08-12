@@ -31,7 +31,16 @@ public class LWRendererEAT extends Label implements ListCellRenderer
      {
          focus.getStyle().setBorder(Border.createLineBorder(3, color));
      }
-
+     
+    public void setTextColor(int color)
+    {
+        Style s = getStyle();
+        s.setFgColor(color);
+        setSelectedStyle(s);
+        setUnselectedStyle(s);
+    }
+   
+    
     @Override
     public void refreshTheme()
     {
