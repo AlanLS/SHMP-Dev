@@ -1443,7 +1443,7 @@ public class Kernel implements IKernel {
                     screenId == KernelConstants.LWUOT_FRENDENT_MENU ||
                     screenId == KernelConstants.LWUOT_FRENDENT_PROFILE) && null == lWForm){
                 UnLoadPresenter();
-                lWForm = new LWFormEAT();
+                
             }
             uiStState = screenId;
         } catch (Exception uiScreenException) {
@@ -1492,7 +1492,8 @@ public class Kernel implements IKernel {
             } else if(uiStState == KernelConstants.LWUOT_FRENDENT_ENTRY 
                     || uiStState == KernelConstants.LWUOT_FRENDENT_MENU
                     || uiStState == KernelConstants.LWUOT_FRENDENT_PROFILE){
-                lWForm.initialize((LWDTO)obj);
+                lWForm = new LWFormEAT((LWDTO)obj);
+                //lWForm.initialize((LWDTO)obj);
                 lWForm.show();
             }
             obj = null;

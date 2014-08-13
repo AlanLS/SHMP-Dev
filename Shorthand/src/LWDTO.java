@@ -5,18 +5,19 @@
  */
 abstract public class LWDTO
 {
+
     private String hdrText = null;
-    private int hdrIconID = -1;
+    private String hdrIconName = "Message+header";
     private String hdrDataSMS = null;
- //
+    //
     private String secHdrText = null;
-    private int secHdrIconID = -1;
-  // 
+    private String secHdrIconName = null;
+    // 
     private byte[] optID = null;
     private byte[] optIDEsc = null;
     private byte[] optIDEntry = null;
     //
-    
+
 //
     //These can be provided elsewhere possibly as statics if need be   
     private int hdrBGColor = 0x0000FF;   // or any other default color
@@ -26,7 +27,8 @@ abstract public class LWDTO
     private int sHdrFGColor = hdrFGColor;   // text color or any other default color
 //
     private int FormBGColor = 0xE0E0E0;   // text color or any other default color
-    private int FormBGImageID = -1;   // resource id# (RecordStore Storage?)
+    //private int FormBGImageID = 1;   // resource id# (RecordStore Storage?)
+    private String FormBGImageName = "Message+bg";   // resource id# (RecordStore Storage?)
     //
     private String backText = "Back";   // resource id# (RecordStore Storage?)
     private byte backID = -1;   // resource id# (RecordStore Storage?)
@@ -35,6 +37,7 @@ abstract public class LWDTO
     private int menuBarFGColor = hdrFGColor;   // text color or any other default color
     private int highlightColor = 0xFF0000; // box around selection (list & escape)
 //     
+
     /**
      * @return the hdrText
      */
@@ -49,22 +52,6 @@ abstract public class LWDTO
     public void setHdrText(String hdrText)
     {
         this.hdrText = hdrText;
-    }
-
-    /**
-     * @return the hdrIconID
-     */
-    public int getHdrIconID()
-    {
-        return hdrIconID;
-    }
-
-    /**
-     * @param hdrIconID the hdrIconID to set
-     */
-    public void setHdrIconID(int hdrIconID)
-    {
-        this.hdrIconID = hdrIconID;
     }
 
     /**
@@ -99,22 +86,7 @@ abstract public class LWDTO
         this.secHdrText = secHdrText;
     }
 
-    /**
-     * @return the secHdrIconID
-     */
-    public int getSecHdrIconID()
-    {
-        return secHdrIconID;
-    }
-
-    /**
-     * @param secHdrIconID the secHdrIconID to set
-     */
-    public void setSecHdrIconID(int secHdrIconID)
-    {
-        this.secHdrIconID = secHdrIconID;
-    }
-
+  
     /**
      * @return the hdrBGColor
      */
@@ -193,22 +165,6 @@ abstract public class LWDTO
     public void setFormBGColor(int FormBGColor)
     {
         this.FormBGColor = FormBGColor;
-    }
-
-    /**
-     * @return the FormBGImageID
-     */
-    public int getFormBGImageID()
-    {
-        return FormBGImageID;
-    }
-
-    /**
-     * @param FormBGImageID the FormBGImageID to set
-     */
-    public void setFormBGImageID(int FormBGImageID)
-    {
-        this.FormBGImageID = FormBGImageID;
     }
 
     /**
@@ -338,12 +294,58 @@ abstract public class LWDTO
     {
         this.optIDEntry = optIDEntry;
     }
-    
+
+    /**
+     * @return the FormBGImageName
+     */
+    public String getFormBGImageName()
+    {
+        return FormBGImageName;
+    }
+
+    /**
+     * @param FormBGImageName the FormBGImageName to set
+     */
+    public void setFormBGImageName(String FormBGImageName)
+    {
+        this.FormBGImageName = FormBGImageName;
+    }
+
+    /**
+     * @return the hdrIconName
+     */
+    public String getHdrIconName()
+    {
+        return hdrIconName;
+    }
+
+    /**
+     * @param hdrIconName the hdrIconName to set
+     */
+    public void setHdrIconName(String hdrIconName)
+    {
+        this.hdrIconName = hdrIconName;
+    }
+
+    /**
+     * @return the secHdrIconName
+     */
+    public String getSecHdrIconName()
+    {
+        return secHdrIconName;
+    }
+
+    /**
+     * @param secHdrIconName the secHdrIconName to set
+     */
+    public void setSecHdrIconName(String secHdrIconName)
+    {
+        this.secHdrIconName = secHdrIconName;
+    }
+
     class LWBannerClass
     {
-     
-        
-        
+
     }
-    
+
 }

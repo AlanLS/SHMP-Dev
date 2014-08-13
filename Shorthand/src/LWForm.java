@@ -2,12 +2,10 @@
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Component;
 import com.sun.lwuit.Container;
-import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Image;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.layouts.BorderLayout;
-import com.sun.lwuit.plaf.Border;
 import com.sun.lwuit.plaf.Style;
 import jg.Resources;
 
@@ -31,20 +29,27 @@ abstract public class LWForm extends Form
     protected Command[] entryOptions;
     protected Command[] currentActiveOptions;
 
-    public void initialize(LWDTO _dto)
+    protected String backReturnText = "";
+
+    public LWForm(LWDTO _dto)
     {
+        super();
+        setLayout(new BorderLayout());
+        setScrollable(false);
         dto = _dto;
         //
         getStyle().setBgColor(dto.getFormBGColor());
         //
-        if (dto.getFormBGImageID() >= 0)
+        String bgImgName = dto.getFormBGImageName();
+        if ((bgImgName != null) && (bgImgName.isEmpty()==false))
         {
-            javax.microedition.lcdui.Image img = Resources.getImage(dto.getFormBGImageID());
+            javax.microedition.lcdui.Image img = RecordManager.getImage(bgImgName);
             Image lwImg = Image.createImage(img);
             getStyle().setBgImage(lwImg);
+            getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_ALIGNED_CENTER);
             int[] splashRGB = new int[1];
             img.getRGB(CustomCanvas.splashRGB, 0, 1, 1, 1, 1, 1);
-            getStyle().setBgColor(splashRGB[0]); // overrides
+            getStyle().setBgColor(splashRGB[0]); // overrides  
         }
         //
         setTitleComponent();
@@ -52,19 +57,15 @@ abstract public class LWForm extends Form
         setSecondaryHeader();
         //
         setBackCommand(new Command(dto.getBackText()));
+        addCommand(getBackCommand());
         //
         setOptions();
         //
         setMenuBarLAF();
-        //
-        //
     }
 
-    public LWForm()
+    private LWForm()
     {
-        super();
-        setLayout(new BorderLayout());
-        setScrollable(false);
     }
 
     protected void setMenuBarLAF()
@@ -108,6 +109,7 @@ abstract public class LWForm extends Form
                 escapeOptions[lngth - i - 1] = cmd;
             }
         }
+        //
         if (dto.getOptIDEntry() != null)
         {
             int lngth = dto.getOptIDEntry().length;
@@ -151,13 +153,21 @@ abstract public class LWForm extends Form
         s.setAlignment(LEFT);
         secHdr.setUnselectedStyle(s);
         Image lwImg = null;
-        if (dto.getHdrIconID() >= 0)
+        String sHIN = dto.getSecHdrIconName();
+        if ((sHIN != null) && (sHIN.isEmpty() == false))
         {
-            javax.microedition.lcdui.Image img = Resources.getImage(dto.getHdrIconID());
-            lwImg = Image.createImage(img);
-            secHdr.setIcon(lwImg);
+            javax.microedition.lcdui.Image img = RecordManager.getImage(sHIN);
+            if (img != null)
+            {
+                lwImg = Image.createImage(img);
+                secHdr.setIcon(lwImg);
+            }
         }
-        addComponent(BorderLayout.NORTH, secHdr);
+        if (((secHdr.getText() != null) && (secHdr.getText().isEmpty() == false))
+                || (secHdr.getIcon() != null))
+        {
+            addComponent(BorderLayout.NORTH, secHdr);
+        }
     }
 
     private void setTitleComponent()
@@ -170,26 +180,33 @@ abstract public class LWForm extends Form
         Container c = new Container(new BorderLayout());
         getTitleArea().addComponent(BorderLayout.CENTER, c);
         Image lwImg = null;
-        if (dto.getHdrIconID() >= 0)
+        String sHIN = dto.getHdrIconName();
+        if ((sHIN != null) && (sHIN.isEmpty() == false))
         {
-            javax.microedition.lcdui.Image img = Resources.getImage(dto.getHdrIconID());
-            lwImg = Image.createImage(img);
+            javax.microedition.lcdui.Image img = RecordManager.getImage(sHIN);
+            if (img != null)
+            {
+                lwImg = Image.createImage(img);
+            }
         }
         setThree(lwImg, dto.getHdrText(), dto.getHdrDataSMS(), c);
     }
 
     void setThree(Object leftOb, Object cntrOb, Object rghtOb, Container c)
     {
-        setLeft(leftOb, c);
-        setCntr(cntrOb, c);
-        setRght(rghtOb, c);
+        if ((leftOb != null) || (cntrOb != null) || (rghtOb != null))
+        {
+            setLeft(leftOb, c);
+            setCntr(cntrOb, c);
+            setRght(rghtOb, c);
+        }
     }
 
     public void setLeft(Object leftOb, Container c)
     {
+        Label l = null;
         if (leftOb != null) // || (leftOb.getClass()==String.class)))
         {
-            Label l = null;
             if (leftOb.getClass() == Image.class)
             {
                 l = new Label((Image) leftOb);
@@ -198,21 +215,25 @@ abstract public class LWForm extends Form
             {
                 l = new Label((String) leftOb);
             }
-            if (l != null)
-            {
-                Style s = new Style(titleStyle);
-                s.setAlignment(LEFT);
-                l.setUnselectedStyle(s);
-                c.addComponent(BorderLayout.WEST, l);
-            }
+        }
+        else
+        {
+            l = new Label();
+        }
+        if (l != null)
+        {
+            Style s = new Style(titleStyle);
+            s.setAlignment(LEFT);
+            l.setUnselectedStyle(s);
+            c.addComponent(BorderLayout.WEST, l);
         }
     }
 
     public void setCntr(Object cntrOb, Container c)
     {
+        Label l = null;
         if (cntrOb != null)
         {
-            Label l = null;
             if (cntrOb.getClass() == Image.class)
             {
                 l = new Label((Image) cntrOb);
@@ -221,21 +242,25 @@ abstract public class LWForm extends Form
             {
                 l = new Label((String) cntrOb);
             }
-            if (l != null)
-            {
-                Style s = new Style(titleStyle);
-                s.setAlignment(LEFT);
-                l.setUnselectedStyle(s);
-                c.addComponent(BorderLayout.CENTER, l);
-            }
+        }
+        else
+        {
+            l = new Label();
+        }
+        if (l != null)
+        {
+            Style s = new Style(titleStyle);
+            s.setAlignment(LEFT);
+            l.setUnselectedStyle(s);
+            c.addComponent(BorderLayout.CENTER, l);
         }
     }
 
     public void setRght(Object RghtOb, Container c)
     {
+        Component l = null;
         if (RghtOb != null)
         {
-            Component l = null;
             if (RghtOb.getClass() == Image.class)
             {
                 l = new Label((Image) RghtOb);
@@ -244,13 +269,17 @@ abstract public class LWForm extends Form
             {
                 l = new Label((String) RghtOb);
             }
-            if (l != null)
-            {
-                Style s = new Style(titleStyle);
-                s.setAlignment(RIGHT);
-                l.setUnselectedStyle(s);
-                c.addComponent(BorderLayout.EAST, l);
-            }
+        }
+        else
+        {
+            l = new Label();
+        }
+        if (l != null)
+        {
+            Style s = new Style(titleStyle);
+            s.setAlignment(RIGHT);
+            l.setUnselectedStyle(s);
+            c.addComponent(BorderLayout.EAST, l);
         }
     }
 }

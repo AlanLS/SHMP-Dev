@@ -25,7 +25,7 @@ public class LWEATActionDTO extends LWDTO
     private int maxChar = -1;
     private int minChar = -1;
     
-    private byte entryBoxConstraint = 2;
+    private byte entryBoxConstraint = -1;
      /*
         if(entryType == 0){
             entryString = "NUMERIC";
@@ -48,11 +48,11 @@ public class LWEATActionDTO extends LWDTO
     private String[] listItems = null;
     private byte[] listItemFaces = null;
     private String[] listImages = null;
-    private int listTextColor = 0x3F3F00;
+    private int listTextColor = 0xefefef;
 
     private String[] escapeText = null;
     private byte[] escapeIDs = null;
-    private int escTextColor = 0x007F4F;   // text color or any other default color  
+    private int escTextColor = 0xefefef;   // text color or any other default color  
 
     /**
      * @return the entryBoxEnabled

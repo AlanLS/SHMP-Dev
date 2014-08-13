@@ -12,6 +12,7 @@ import com.sun.lwuit.events.FocusListener;
 import com.sun.lwuit.events.SelectionListener;
 import com.sun.lwuit.layouts.BorderLayout;
 import com.sun.lwuit.list.ListCellRenderer;
+import java.io.IOException;
 import java.util.Vector;
 
 /**
@@ -20,7 +21,6 @@ import java.util.Vector;
  */
 public class LWFormEAT extends LWForm implements ActionListener, SelectionListener, FocusListener
 {
-
     static final String LISTNAME_ITEMS = "ITM";
     static final String LISTNAME_ESCAPE = "ESC";
 
@@ -32,17 +32,10 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
 
     private Object[] currentItem = null;
     private Object[] currentEsc = null;
-
-    private String backReturnText = "";
-
-    public LWFormEAT()
+  
+    public LWFormEAT(LWDTO _dto)
     {
-        super();
-    }
-
-    public void initialize(LWDTO _dto)
-    {
-        super.initialize(_dto);
+        super(_dto);
         if (_dto.getClass() != LWEATActionDTO.class)
         {
             //throw new Exception();
@@ -55,6 +48,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         //
         addCommandListener(this);
     }
+
 
     public void showCompleted()
     {
@@ -119,7 +113,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             list.setName("ESC");
             list.setRenderer((ListCellRenderer) new LWRendererEAT());
             ((LWRendererEAT) list.getRenderer()).setFocusColor(act.getHighlightColor());
-            ((LWRendererEAT) list.getRenderer()).setTextColor(act.getListTextColor());
+            ((LWRendererEAT) list.getRenderer()).setTextColor(act.getEscTextColor());
             list.addActionListener(this);
             list.addSelectionListener(this);
             list.addFocusListener(this);
@@ -165,7 +159,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             list.setName("ITM");
             list.setRenderer((ListCellRenderer) new LWRendererEAT());
             ((LWRendererEAT) list.getRenderer()).setFocusColor(act.getHighlightColor());
-            ((LWRendererEAT) list.getRenderer()).setTextColor(act.getEscTextColor());
+            ((LWRendererEAT) list.getRenderer()).setTextColor(act.getListTextColor());
             list.addActionListener(this);
             list.addSelectionListener(this);
             list.addFocusListener(this);
@@ -211,6 +205,18 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             LWVirtualKB vkb = new LWVirtualKB();
             switch (act.getEntryBoxConstraint())
             {
+                case -1:
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "Abc", "123"
+                    });
+                    tf.setConstraint(TextField.ANY);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.QWERTY_MODE
+                    });
+                }
                 case 0://numeric
                 {
                     tf.setInputModeOrder(new String[]
@@ -228,7 +234,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
                 {
                     tf.setInputModeOrder(new String[]
                     {
-                        "ABC"
+                        "Abc"
                     });
                     tf.setConstraint(TextField.ANY);
                     vkb.setInputModeOrder(new String[]
@@ -412,6 +418,14 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         else if (cmpnt.getClass() == TextField.class)
         {
             setCurrentOptionList(entryOptions);
+        }
+        else
+        {
+            if (this.getCommandCount() > 0)
+            {
+                removeAllCommands();
+            }
+            addCommand(getBackCommand());
         }
     }
 
