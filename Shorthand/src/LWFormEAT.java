@@ -1,9 +1,7 @@
 
-import com.sun.lwuit.Button;
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Component;
 import com.sun.lwuit.Container;
-import com.sun.lwuit.Label;
 import com.sun.lwuit.List;
 import com.sun.lwuit.TextField;
 import com.sun.lwuit.VirtualKeyboard;
@@ -13,10 +11,7 @@ import com.sun.lwuit.events.DataChangedListener;
 import com.sun.lwuit.events.FocusListener;
 import com.sun.lwuit.events.SelectionListener;
 import com.sun.lwuit.layouts.BorderLayout;
-import com.sun.lwuit.layouts.BoxLayout;
 import com.sun.lwuit.list.ListCellRenderer;
-import com.sun.lwuit.plaf.Border;
-import com.sun.lwuit.plaf.Style;
 import java.util.Vector;
 
 /**
@@ -37,6 +32,8 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
 
     private Object[] currentItem = null;
     private Object[] currentEsc = null;
+
+    private String backReturnText = "";
 
     public LWFormEAT()
     {
@@ -96,79 +93,6 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             addComponent(BorderLayout.SOUTH, cmpEB);
         }
     }
-    /*
-     private Component setEscTextLabel(String txt, String nm)
-     {
-     Label l = new Label();
-     l.setText(txt);
-     l.setName(nm);
-     l.addFocusListener(this);
-     l.setFocusable(true);
-     Style s = new Style(l.getStyle());
-     s.setMargin(0, 0, 0, 0);
-     s.setFgColor(act.getEscTextColor());
-     s.setBgTransparency(0);
-     s.setBorder(null);
-     //
-     l.setUnselectedStyle(s);
-     s = new Style(l.getStyle());
-     s.setBorder(Border.createLineBorder(3, act.getHighlightColor()));
-     l.setSelectedStyle(s);
-     l.setPressedStyle(s);
-     return l;
-     }
-
-     private Component setEscTextButton(String txt, String nm)
-     {
-     Button b = new Button();
-     b.setUIID("Label");
-     b.setText(txt);
-     b.setName(nm);
-     b.addFocusListener(this);
-     b.setFocusable(true);
-     b.addActionListener(this);
-     Style s = new Style(b.getStyle());
-     s.setMargin(0, 0, 0, 0);
-     s.setFgColor(act.getEscTextColor());
-     s.setBgTransparency(0);
-     s.setBorder(null);
-     //
-     b.setUnselectedStyle(s);
-     s = new Style(b.getStyle());
-     s.setBorder(Border.createLineBorder(3, act.getHighlightColor()));
-     b.setSelectedStyle(s);
-     b.setPressedStyle(s);
-     return b;
-     }
-
-     private Component getEscapeTexts()
-     {
-     String[] escText = act.getEscapeText();
-     if (escText != null)
-     {
-     Container c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-     int cnt = escText.length;
-     if (cnt > 0)
-     {
-     String et0 = escText[0];
-     if (et0 != null)
-     {
-     c.addComponent(setEscTextButton(et0, Integer.toString(act.getEscapeIDs()[0])));
-     }
-     }
-     if (cnt > 1)
-     {
-     String et1 = escText[1];
-     if (et1 != null)
-     {
-     c.addComponent(setEscTextButton(et1, Integer.toString(act.getEscapeIDs()[1])));
-     }
-     }
-     return c;
-     }
-     return null;
-     }
-     */
 
     private Component getEscapeList()
     {
@@ -180,7 +104,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             {
                 vec.addElement(new Object[]
                 {
-                    act.getEscapeText()[i], new Integer(act.getEscapeIDs()[i]), null
+                    act.getEscapeText()[i], (int) act.getEscapeIDs()[i]
                 });
             }
             final LWListModel listModel = new LWListModel(vec);
@@ -211,40 +135,6 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         return null;
     }
 
-    private Component getLineEntryBox()
-    {
-        if (act.isEntryBoxEnabled())
-        {
-            final TextField tf = new TextField();
-            //tf.setSingleLineTextArea(true);
-            tf.getStyle().setBgColor(0xffffff);
-            tf.setHint(act.getEntryBoxHint());
-            tf.addFocusListener(this);
-            tf.addActionListener(this);
-            //tf.setConstraint(TextField.NUMERIC);
-            //tf.setInputModeOrder(new String[]{"123","ABC","abc","Abc"});
-            LWVirtualKB vkb = new LWVirtualKB();
-            vkb.setInputModeOrder(new String[]
-            {
-                VirtualKeyboard.QWERTY_MODE
-            });
-            VirtualKeyboard.bindVirtualKeyboard(tf, vkb);
-            tf.addDataChangeListener(new DataChangedListener()
-            {
-                public void dataChanged(int i, int i1)
-                {
-                    entryFieldChanged(i, tf);
-                }
-            });
-            float[] mmv = act.getMinMaxValue();
-            validateValue = ((mmv[0] != Float.NaN) || (mmv[1] != Float.NaN));
-            int[] mmc = act.getMinMaxChar();
-            validateCharCnt = ((mmv[0] >= 0) || (mmv[1] >= 0));
-            return tf;
-        }
-        return null;
-    }
-
     private Component getItemsList()
     {
         if (act.getListItems() != null)
@@ -252,11 +142,15 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             int lngth = act.getListItems().length;
             Vector vec = new Vector(lngth);
             boolean hasImages = (act.getListImages() != null) && (act.getListImages().length == lngth);
+            boolean hasFaces = (act.getListItemFaces() != null) && (act.getListItemFaces().length == lngth);
             for (int i = 0; i < lngth; ++i)
             {
                 vec.addElement(new Object[]
                 {
-                    act.getListItems()[i], new Integer(act.getListItemIds()[i]), hasImages ? act.getListImages()[i] : null
+                    act.getListItems()[i],
+                    (int) (act.getListItemIds()[i]),
+                    hasImages ? act.getListImages()[i] : null,
+                    hasFaces ? (boolean) (act.getListItemFaces()[i] == 1) : null,
                 });
             }
             final LWListModel listModel = new LWListModel(vec);
@@ -287,9 +181,149 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         return null;
     }
 
+    private Component getLineEntryBox()
+    {
+        /*
+         if(entryType == 0){
+         entryString = "NUMERIC";
+         } else if(entryType == 1){
+         entryString = "ALPHA";
+         } else if(entryType == 2){
+         entryString = "ALPHANUMERIC";
+         } else if(entryType == 3){
+         entryString = "DECIMAL";
+         } else if(entryType == 4){
+         entryString = "DOLLARCENTS";
+         } else if(entryType == 5){
+         entryString = "DATE";
+         } else if(entryType == 6){
+         entryString = "PHONENUMBER";
+         }
+         */
+        if (act.isEntryBoxEnabled())
+        {
+            final TextField tf = new TextField();
+            //tf.setSingleLineTextArea(true);
+            tf.getStyle().setBgColor(0xffffff);
+            tf.setHint(act.getEntryBoxHint());
+            tf.addFocusListener(this);
+            //tf.addActionListener(this);
+            LWVirtualKB vkb = new LWVirtualKB();
+            switch (act.getEntryBoxConstraint())
+            {
+                case 0://numeric
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "123"
+                    });
+                    tf.setConstraint(TextField.NUMERIC);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.NUMBERS_MODE
+                    });
+                }
+                break;
+                case 1://Alpha
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "ABC"
+                    });
+                    tf.setConstraint(TextField.ANY);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.QWERTY_MODE
+                    });
+                }
+                break;
+                case 2://AlphaNumeric
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "Abc", "123"
+                    });
+                    tf.setConstraint(TextField.ANY);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.QWERTY_MODE
+                    });
+                }
+                break;
+                case 3://Decimal
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "123"
+                    });
+                    tf.setConstraint(TextField.DECIMAL);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.NUMBERS_MODE
+                    });
+                }
+                case 4://DollarCents
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "123"
+                    });
+                    tf.setConstraint(TextField.DECIMAL);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.NUMBERS_SYMBOLS_MODE
+                    });
+                }
+                case 5://Date
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "123", "Abc"
+                    });
+                    tf.setConstraint(TextField.ANY);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.NUMBERS_SYMBOLS_MODE
+                    });
+                }
+                case 6://PhoneNumber
+                {
+                    tf.setInputModeOrder(new String[]
+                    {
+                        "123", "Abc"
+                    });
+                    tf.setConstraint(TextField.NUMERIC);
+                    vkb.setInputModeOrder(new String[]
+                    {
+                        VirtualKeyboard.NUMBERS_MODE
+                    });
+                }
+                break;
+            }
+            //tf.setConstraint(TextField.NUMERIC);
+            //tf.setInputModeOrder(new String[]{"123","ABC","abc","Abc"});
+            VirtualKeyboard.bindVirtualKeyboard(tf, vkb);
+            tf.addDataChangeListener(new DataChangedListener()
+            {
+                public void dataChanged(int i, int i1)
+                {
+                    entryFieldChanged(i, tf);
+                }
+            });
+            float[] mmv = act.getMinMaxValue();
+            validateValue = ((mmv[0] != Float.NaN) || (mmv[1] != Float.NaN));
+            //
+            int[] mmc = act.getMinMaxChar();
+            validateCharCnt = ((mmv[0] >= 0) || (mmv[1] >= 0));
+            return tf;
+        }
+        return null;
+    }
+
     private void entryFieldChanged(int type, TextField tf)
     {
         System.out.println("Entryfield Changed " + "type= " + type + " entered= " + tf.getText());
+        backReturnText = tf.getText();
     }
 
     private void listModelChanged(int type, int idx, LWListModel lm)
@@ -315,20 +349,20 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         {
             if (cmd == getBackCommand())
             {
-                ObjectBuilderFactory.GetKernel().handleItemSelection(act.getBackID(), act.getBackText());
+                ObjectBuilderFactory.GetKernel().handleItemSelection(act.getBackID(), backReturnText);
             }
-            else if ((options != null) && this.currentActiveOptions.equals(options))
+            else if ((options != null) && currentActiveOptions.equals(options))
             {
                 if (currentItem != null)
                 {
-                    ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentItem[1]).intValue(), (String) currentItem[0], (byte) cmd.getId());
+                    ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentItem[1]), (String) currentItem[0], (byte) cmd.getId());
                 }
             }
             else if ((escapeOptions != null) && this.currentActiveOptions.equals(escapeOptions))
             {
                 if (currentEsc != null)
                 {
-                    ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentEsc[1]).intValue(), (String) currentEsc[0], (byte) cmd.getId());
+                    ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentEsc[1]), (String) currentEsc[0], (byte) cmd.getId());
                 }
             }
         }
@@ -366,14 +400,18 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         {
             if (((List) cmpnt).getName().equals(LISTNAME_ITEMS))
             {
-                setItemOptions();
+                setCurrentOptionList(options);
                 currentItem = (Object[]) ((LWListModel) ((List) cmpnt).getModel()).getSelectedItem();
             }
             if (((List) cmpnt).getName().equals(LISTNAME_ESCAPE))
             {
-                setEscapeOptions();
+                setCurrentOptionList(escapeOptions);
                 currentEsc = (Object[]) ((LWListModel) ((List) cmpnt).getModel()).getSelectedItem();
             }
+        }
+        else if (cmpnt.getClass() == TextField.class)
+        {
+            setCurrentOptionList(entryOptions);
         }
     }
 

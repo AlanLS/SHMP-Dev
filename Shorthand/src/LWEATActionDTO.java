@@ -9,22 +9,44 @@ public class LWEATActionDTO extends LWDTO
 {
 //specific to EAT
 
-    private boolean entryBoxEnabled = true;
+    private boolean entryBoxEnabled = false;
     private String entryBoxHint = null;
+    private byte entryBoxMode = IKeyHandler.MODE_Abc;
+    /*
+       IKeyHandler.
+        public static final byte MODE_123 = 0;
+        public static final byte MODE_abc = 1;
+        public static final byte MODE_ABC = 2;
+        public static final byte MODE_Abc = 3;
+    */
+    
     private float minValue = Float.NaN;
     private float maxValue = Float.NaN;
     private int maxChar = -1;
     private int minChar = -1;
-    private String entryBoxConstraint = null;
+    
+    private byte entryBoxConstraint = 2;
+     /*
+        if(entryType == 0){
+            entryString = "NUMERIC";
+        } else if(entryType == 1){
+            entryString = "ALPHA";
+        } else if(entryType == 2){
+            entryString = "ALPHANUMERIC";
+        } else if(entryType == 3){
+            entryString = "DECIMAL";
+        } else if(entryType == 4){
+            entryString = "DOLLARCENTS";
+        } else if(entryType == 5){
+            entryString = "DATE";
+        } else if(entryType == 6){
+            entryString = "PHONENUMBER";
+        }
+    */
     // these all need to be same length
-    private int[] listItemIds = new int[]
-    {
-       // 1, 2, 3//, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
-    };
-    private String[] listItems = new String[]
-    {
-        //"L1", "L2", "L3"//, "L4", "L5", "L6", "L7", "L8", "L9", "L10", "L11", "L12", "L13"
-    };
+    private int[] listItemIds = null;
+    private String[] listItems = null;
+    private byte[] listItemFaces = null;
     private String[] listImages = null;
     private int listTextColor = 0x3F3F00;
 
@@ -144,21 +166,7 @@ public class LWEATActionDTO extends LWDTO
         };
     }
 
-    /**
-     * @return the entryBoxConstraint
-     */
-    public String getEntryBoxConstraint()
-    {
-        return entryBoxConstraint;
-    }
 
-    /**
-     * @param entryBoxConstraint the entryBoxConstraint to set
-     */
-    public void setEntryBoxConstraint(String entryBoxConstraint)
-    {
-        this.entryBoxConstraint = entryBoxConstraint;
-    }
 
     /**
      * @return the listItemIds
@@ -270,5 +278,53 @@ public class LWEATActionDTO extends LWDTO
     public void setEscTextColor(int escTextColor)
     {
         this.escTextColor = escTextColor;
+    }
+
+    /**
+     * @return the listItemFaces
+     */
+    public byte[] getListItemFaces()
+    {
+        return listItemFaces;
+    }
+
+    /**
+     * @param listItemFaces the listItemFaces to set
+     */
+    public void setListItemFaces(byte[] listItemFaces)
+    {
+        this.listItemFaces = listItemFaces;
+    }
+
+    /**
+     * @return the entryBoxMode
+     */
+    public byte getEntryBoxMode()
+    {
+        return entryBoxMode;
+    }
+
+    /**
+     * @param entryBoxMode the entryBoxMode to set
+     */
+    public void setEntryBoxMode(byte entryBoxMode)
+    {
+        this.entryBoxMode = entryBoxMode;
+    }
+
+    /**
+     * @return the entryBoxConstraint
+     */
+    public byte getEntryBoxConstraint()
+    {
+        return entryBoxConstraint;
+    }
+
+    /**
+     * @param entryBoxConstraint the entryBoxConstraint to set
+     */
+    public void setEntryBoxConstraint(byte entryBoxConstraint)
+    {
+        this.entryBoxConstraint = entryBoxConstraint;
     }
 }

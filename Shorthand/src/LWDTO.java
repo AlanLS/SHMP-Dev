@@ -14,6 +14,9 @@ abstract public class LWDTO
   // 
     private byte[] optID = null;
     private byte[] optIDEsc = null;
+    private byte[] optIDEntry = null;
+    //
+    
 //
     //These can be provided elsewhere possibly as statics if need be   
     private int hdrBGColor = 0x0000FF;   // or any other default color
@@ -319,4 +322,28 @@ abstract public class LWDTO
     {
         this.backID = backID;
     }
+
+    /**
+     * @return the optIDEntry
+     */
+    public byte[] getOptIDEntry()
+    {
+        return optIDEntry;
+    }
+
+    /**
+     * @param optIDEntry the optIDEntry to set
+     */
+    public void setOptIDEntry(byte[] optIDEntry)
+    {
+        this.optIDEntry = optIDEntry;
+    }
+    
+    class LWBannerClass
+    {
+     
+        
+        
+    }
+    
 }

@@ -20,11 +20,11 @@ public class LWRendererEAT extends Label implements ListCellRenderer
         s.setMargin(1, 1);
         s.setBorder(null);
         s.setBgTransparency(0);
+        s.setFont(LWFonts.getFont(LWFonts.StandardFontID));
         setSelectedStyle(s);
         setUnselectedStyle(s);
         focus.getStyle().setBgTransparency(0);
-        focus.getStyle().setBorder(Border.createLineBorder(3, 0x00ff00));
-        
+        focus.getStyle().setBorder(Border.createLineBorder(3, 0x00ff00)); 
     }
     
      public void setFocusColor(int color)
@@ -63,8 +63,11 @@ public class LWRendererEAT extends Label implements ListCellRenderer
         Object[] o = (Object[]) value;
         setHeight(25);
         setText(o[0].toString());
-        if (o[1] != null) // there's an image resource path
-        {
+        //
+        if (o.length > 2) // may have Image data
+        {    
+            if (o[2] != null) // there's an image resource path
+            {
             // get image here
             
             //if ((System.currentTimeMillis() & 0xF) > 0x7) 
@@ -72,13 +75,24 @@ public class LWRendererEAT extends Label implements ListCellRenderer
             //    Image img = Image.createImage(25, 25, 0xFF00FF);
             //    setIcon(img);
             //}
+            }
         }
-        else
+        
+        if (o.length > 3) // may have face data
         {
-            
+            if (o[3] != null)
+            {
+                boolean isBold = ((Boolean)(o[3]));
+                if (isBold)
+                {
+                    getStyle().setFont(LWFonts.getFont(LWFonts.StandardFontBoldID));
+                }
+                else
+                {
+                    getStyle().setFont(LWFonts.getFont(LWFonts.StandardFontID));
+                }
+            }
         }
-            
-           
         return this;
     }
 

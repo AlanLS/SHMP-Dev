@@ -22,11 +22,13 @@ import jg.Resources;
  */
 abstract public class LWForm extends Form
 {
+
     LWDTO dto;
     Style titleStyle = null;
 
     protected Command[] options;
     protected Command[] escapeOptions;
+    protected Command[] entryOptions;
     protected Command[] currentActiveOptions;
 
     public void initialize(LWDTO _dto)
@@ -55,9 +57,7 @@ abstract public class LWForm extends Form
         //
         setMenuBarLAF();
         //
-        
         //
-
     }
 
     public LWForm()
@@ -70,23 +70,17 @@ abstract public class LWForm extends Form
     protected void setMenuBarLAF()
     {
         Style s = new Style(this.titleStyle);
-
         s.setBackgroundGradientStartColor(dto.getHdrBGColor());
         s.setBgColor(dto.getHdrBGColor());
         s.setFgColor(dto.getHdrFGColor());
         getMenuBar().setUnselectedStyle(s);
-
         Style ss = new Style(s);
         ss.setBackgroundGradientStartColor(ss.getBackgroundGradientEndColor());
         ss.setBackgroundGradientEndColor(dto.getHdrBGColor());
         getMenuBar().setPressedStyle(ss);
-
         Style sss = new Style(ss);
-        
         getMenuBar().setSelectedStyle(sss);
         setMenuCellRenderer(new LWRendererMenuCell());
-        
-        
         LWRendererMenuCell rmc = new LWRendererMenuCell();
         rmc.setFocusColor(dto.getHighlightColor());
         getMenuBar().setMenuCellRenderer(rmc);
@@ -94,57 +88,58 @@ abstract public class LWForm extends Form
 
     protected void setOptions()
     {
-         if (dto.getOptID() != null)
+        if (dto.getOptID() != null)
         {
             int lngth = dto.getOptID().length;
             options = new Command[lngth];
-
             for (int i = 0; i < lngth; ++i)
             {
                 Command cmd = new Command(Constants.options[dto.getOptID()[i]], dto.getOptID()[i]);
-                options[lngth-i-1] = cmd;
+                options[lngth - i - 1] = cmd;
             }
         }
-
         if (dto.getOptIDEsc() != null)
         {
             int lngth = dto.getOptIDEsc().length;
             escapeOptions = new Command[lngth];
-
             for (int i = 0; i < lngth; ++i)
             {
                 Command cmd = new Command(Constants.options[dto.getOptIDEsc()[i]], dto.getOptIDEsc()[i]);
-                escapeOptions[lngth-i-1] = cmd;
+                escapeOptions[lngth - i - 1] = cmd;
+            }
+        }
+        if (dto.getOptIDEntry() != null)
+        {
+            int lngth = dto.getOptIDEntry().length;
+            entryOptions = new Command[lngth];
+            for (int i = 0; i < lngth; ++i)
+            {
+                Command cmd = new Command(Constants.options[dto.getOptIDEntry()[i]], dto.getOptIDEntry()[i]);
+                entryOptions[lngth - i - 1] = cmd;
             }
         }
     }
-    
+
     public void setCurrentOptionList(Command[] optList)
     {
         if (this.getCommandCount() > 0)
         {
             removeAllCommands();
         }
-        
         addCommand(getBackCommand());
-          
-        for (int i=0; i<optList.length; ++i)
+        if (optList == null)
+        {
+            optList = new Command[]
+            {
+            };
+        }
+        for (int i = 0; i < optList.length; ++i)
         {
             addCommand(optList[i]);
         }
         currentActiveOptions = optList;
         revalidate();
         repaint();
-    }
-    
-    public void setItemOptions()
-    {
-       setCurrentOptionList(options);  
-    }
-    
-    public void setEscapeOptions()
-    {
-        setCurrentOptionList(escapeOptions); 
     }
 
     private void setSecondaryHeader()
@@ -155,7 +150,6 @@ abstract public class LWForm extends Form
         s.setFgColor(dto.getSHdrFGColor());
         s.setAlignment(LEFT);
         secHdr.setUnselectedStyle(s);
-
         Image lwImg = null;
         if (dto.getHdrIconID() >= 0)
         {
@@ -172,7 +166,6 @@ abstract public class LWForm extends Form
         titleStyle.setBackgroundGradientStartColor(dto.getHdrBGColor());
         titleStyle.setBgColor(dto.getHdrBGColor());
         titleStyle.setFgColor(dto.getHdrFGColor());
-
         getTitleArea().removeAll();
         Container c = new Container(new BorderLayout());
         getTitleArea().addComponent(BorderLayout.CENTER, c);
@@ -197,7 +190,6 @@ abstract public class LWForm extends Form
         if (leftOb != null) // || (leftOb.getClass()==String.class)))
         {
             Label l = null;
-
             if (leftOb.getClass() == Image.class)
             {
                 l = new Label((Image) leftOb);
@@ -206,7 +198,6 @@ abstract public class LWForm extends Form
             {
                 l = new Label((String) leftOb);
             }
-
             if (l != null)
             {
                 Style s = new Style(titleStyle);
@@ -230,7 +221,6 @@ abstract public class LWForm extends Form
             {
                 l = new Label((String) cntrOb);
             }
-
             if (l != null)
             {
                 Style s = new Style(titleStyle);
@@ -254,7 +244,6 @@ abstract public class LWForm extends Form
             {
                 l = new Label((String) RghtOb);
             }
-
             if (l != null)
             {
                 Style s = new Style(titleStyle);

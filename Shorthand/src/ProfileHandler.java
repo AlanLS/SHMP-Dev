@@ -813,7 +813,9 @@ public class ProfileHandler {
             lWEATActionDTO.setMinChar(action.getMinchar());
             lWEATActionDTO.setMinValue(action.getMinValue());
             lWEATActionDTO.setEntryBoxEnabled(action.isIsebRemove());
-            lWEATActionDTO.setEntryBoxConstraint(getEntryType(action.getEtype()));
+            //lWEATActionDTO.setEntryBoxConstraint(getEntryType(action.getEtype()));
+            lWEATActionDTO.setEntryBoxConstraint(action.getEtype());
+            //
             lWEATActionDTO.setMaxValue(action.getMaxvalue());
             ObjectBuilderFactory.GetKernel().displayScreen(lWEATActionDTO, isSelect);
             value = null;
@@ -825,7 +827,7 @@ public class ProfileHandler {
 //        //|JG|Logger.debugOnError("Entry action Loaded");
 //        //#endif //11801
     }
-
+/*
     private String getEntryType(byte entryType){
         String entryString = null;
         if(entryType == 0){
@@ -845,7 +847,7 @@ public class ProfileHandler {
         }
         return  entryString;
     }
-
+*/
     private byte[] appendEscapeItemId(){
         String[] temp = pparser.getEscapeMenu();
         if(null != temp){
