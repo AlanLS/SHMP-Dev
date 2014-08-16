@@ -11,8 +11,8 @@ import com.sun.lwuit.events.DataChangedListener;
 import com.sun.lwuit.events.FocusListener;
 import com.sun.lwuit.events.SelectionListener;
 import com.sun.lwuit.layouts.BorderLayout;
+import com.sun.lwuit.list.ContainerList;
 import com.sun.lwuit.list.ListCellRenderer;
-import java.io.IOException;
 import java.util.Vector;
 
 /**
@@ -21,6 +21,7 @@ import java.util.Vector;
  */
 public class LWFormEAT extends LWForm implements ActionListener, SelectionListener, FocusListener
 {
+
     static final String LISTNAME_ITEMS = "ITM";
     static final String LISTNAME_ESCAPE = "ESC";
 
@@ -32,7 +33,8 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
 
     private Object[] currentItem = null;
     private Object[] currentEsc = null;
-  
+    private String currentEntry = "";
+
     public LWFormEAT(LWDTO _dto)
     {
         super(_dto);
@@ -49,29 +51,17 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         addCommandListener(this);
     }
 
-
-    public void showCompleted()
-    {
-        super.onShowCompleted();
-        //if (list != null)
-        //{
-        //    list.requestFocus();
-        //    list.setSelectedIndex(0);
-        //}
-        revalidate();
-    }
-
     private void setListAndEscape()
     {
         //Container c = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container c = new Container(new BorderLayout());
-        Component cmpLI = getItemsList();
+        Component cmpLI = createItemsList();
         if (cmpLI != null)
         {
             c.addComponent(BorderLayout.CENTER, cmpLI);
         }
         //
-        Component cmpET = getEscapeList();//getEscapeTexts();
+        Component cmpET = createEscapeList();//getEscapeTexts();
         if (cmpET != null)
         {
             c.addComponent(BorderLayout.SOUTH, cmpET);
@@ -81,15 +71,22 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
 
     private void setEntry()
     {
-        Component cmpEB = getLineEntryBox();
+        Component cmpEB = createLineEntryBox();
         if (cmpEB != null)
         {
             addComponent(BorderLayout.SOUTH, cmpEB);
         }
     }
 
-    private Component getEscapeList()
+    private Component createEscapeList()
     {
+        if (act.getEscapeText() == null)
+        {
+            if (act.getOptIDEsc() != null)
+            {
+                act.setEscapeText(new String[0]);
+            }
+        }
         if (act.getEscapeText() != null)
         {
             int lngth = act.getEscapeText().length;
@@ -102,23 +99,24 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
                 });
             }
             final LWListModel listModel = new LWListModel(vec);
-            listModel.addDataChangedListener(new DataChangedListener()
-            {
-                public void dataChanged(int i, int i1)
-                {
-                    listModelChanged(i, i1, listModel);
-                }
-            });
+            /*            listModel.addDataChangedListener(new DataChangedListener()
+             {
+             public void dataChanged(int i, int i1)
+             {
+             listModelChanged(i, i1, listModel);
+             }
+             });
+             */
             List list = new List(listModel);
+            list.setPaintFocusBehindList(true);
             list.setName("ESC");
-            list.setRenderer((ListCellRenderer) new LWRendererEAT());
+            list.setRenderer((ListCellRenderer) new LWRendererEAT(act.getBarHeights()));
             ((LWRendererEAT) list.getRenderer()).setFocusColor(act.getHighlightColor());
             ((LWRendererEAT) list.getRenderer()).setTextColor(act.getEscTextColor());
             list.addActionListener(this);
             list.addSelectionListener(this);
             list.addFocusListener(this);
             list.setSmoothScrolling(true);
-            list.setPaintFocusBehindList(true);
             list.setFixedSelection(List.FIXED_NONE);
             list.setScrollVisible(true);
             list.setScrollToSelected(true);
@@ -129,8 +127,15 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         return null;
     }
 
-    private Component getItemsList()
+    private Component createItemsList()
     {
+        if (act.getListItems() == null)
+        {
+            if (act.getOptID() != null)
+            {
+                act.setListItems(new String[0]);
+            }
+        }
         if (act.getListItems() != null)
         {
             int lngth = act.getListItems().length;
@@ -148,16 +153,17 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
                 });
             }
             final LWListModel listModel = new LWListModel(vec);
-            listModel.addDataChangedListener(new DataChangedListener()
-            {
-                public void dataChanged(int i, int i1)
-                {
-                    listModelChanged(i, i1, listModel);
-                }
-            });
+            /*            listModel.addDataChangedListener(new DataChangedListener()
+             {
+             public void dataChanged(int i, int i1)
+             {
+             listModelChanged(i, i1, listModel);
+             }
+             });
+             */
             List list = new List(listModel);
             list.setName("ITM");
-            list.setRenderer((ListCellRenderer) new LWRendererEAT());
+            list.setRenderer((ListCellRenderer) new LWRendererEAT(act.getBarHeights()));
             ((LWRendererEAT) list.getRenderer()).setFocusColor(act.getHighlightColor());
             ((LWRendererEAT) list.getRenderer()).setTextColor(act.getListTextColor());
             list.addActionListener(this);
@@ -175,7 +181,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         return null;
     }
 
-    private Component getLineEntryBox()
+    private Component createLineEntryBox()
     {
         /*
          if(entryType == 0){
@@ -202,7 +208,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
             tf.setHint(act.getEntryBoxHint());
             tf.addFocusListener(this);
             //tf.addActionListener(this);
-            LWVirtualKB vkb = new LWVirtualKB();
+            VirtualKeyboard vkb = new VirtualKeyboard();
             switch (act.getEntryBoxConstraint())
             {
                 case -1:
@@ -329,7 +335,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
     private void entryFieldChanged(int type, TextField tf)
     {
         System.out.println("Entryfield Changed " + "type= " + type + " entered= " + tf.getText());
-        backReturnText = tf.getText();
+        currentEntry = tf.getText();
     }
 
     private void listModelChanged(int type, int idx, LWListModel lm)
@@ -344,7 +350,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         System.out.println("cmp= " + cmp + " cmd= " + cmd);
         if (cmp != null)
         {
-            if (cmp.getClass() == List.class)
+            if ((cmp.getClass() == List.class) || (cmp.getClass() == ContainerList.class))
             {
                 LWListModel lm = (LWListModel) ((List) cmp).getModel();
                 Object[] item = (Object[]) lm.getSelectedItem();
@@ -355,13 +361,24 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         {
             if (cmd == getBackCommand())
             {
-                ObjectBuilderFactory.GetKernel().handleItemSelection(act.getBackID(), backReturnText);
+                if (currentItem != null)
+                {
+                    ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentItem[1]), (String) currentItem[0], (byte) cmd.getId());
+                }
+                else
+                {
+                    ObjectBuilderFactory.GetKernel().handleOptionSelection(-1, "", (byte) cmd.getId());
+                }
             }
             else if ((options != null) && currentActiveOptions.equals(options))
             {
                 if (currentItem != null)
                 {
                     ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentItem[1]), (String) currentItem[0], (byte) cmd.getId());
+                }
+                else
+                {
+                    ObjectBuilderFactory.GetKernel().handleOptionSelection(-1, "", (byte) cmd.getId());
                 }
             }
             else if ((escapeOptions != null) && this.currentActiveOptions.equals(escapeOptions))
@@ -370,6 +387,10 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
                 {
                     ObjectBuilderFactory.GetKernel().handleOptionSelection(((Integer) currentEsc[1]), (String) currentEsc[0], (byte) cmd.getId());
                 }
+                else
+                {
+                    ObjectBuilderFactory.GetKernel().handleOptionSelection(-1, "", (byte) cmd.getId());
+                }
             }
         }
     }
@@ -377,7 +398,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
     public void selectionChanged(int arg0, int arg1)
     {
         System.out.println("old= " + arg0 + " new= " + arg1);
-        if (getFocused().getClass() == List.class)
+        if ((getFocused().getClass() == List.class) || (getFocused().getClass() == ContainerList.class))
         {
             List l = ((List) getFocused());
             if (l.getName().equals(LISTNAME_ITEMS))
@@ -409,7 +430,7 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
                 setCurrentOptionList(options);
                 currentItem = (Object[]) ((LWListModel) ((List) cmpnt).getModel()).getSelectedItem();
             }
-            if (((List) cmpnt).getName().equals(LISTNAME_ESCAPE))
+            else if (((List) cmpnt).getName().equals(LISTNAME_ESCAPE))
             {
                 setCurrentOptionList(escapeOptions);
                 currentEsc = (Object[]) ((LWListModel) ((List) cmpnt).getModel()).getSelectedItem();
@@ -417,7 +438,8 @@ public class LWFormEAT extends LWForm implements ActionListener, SelectionListen
         }
         else if (cmpnt.getClass() == TextField.class)
         {
-            setCurrentOptionList(entryOptions);
+            setCurrentOptionList(this.entryOptions);
+            currentEntry = ((TextField) cmpnt).getText();
         }
         else
         {

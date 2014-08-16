@@ -1,7 +1,6 @@
 
 import com.sun.lwuit.Font;
 
-
 /**
  *
  * @author alan

@@ -1,6 +1,4 @@
 
-import java.util.Hashtable;
-
 /**
  *
  * @author alan
@@ -13,46 +11,50 @@ public class LWEATActionDTO extends LWDTO
     private String entryBoxHint = null;
     private byte entryBoxMode = IKeyHandler.MODE_Abc;
     /*
-       IKeyHandler.
-        public static final byte MODE_123 = 0;
-        public static final byte MODE_abc = 1;
-        public static final byte MODE_ABC = 2;
-        public static final byte MODE_Abc = 3;
-    */
-    
+     IKeyHandler.
+     public static final byte MODE_123 = 0;
+     public static final byte MODE_abc = 1;
+     public static final byte MODE_ABC = 2;
+     public static final byte MODE_Abc = 3;
+     */
+
     private float minValue = Float.NaN;
     private float maxValue = Float.NaN;
     private int maxChar = -1;
     private int minChar = -1;
-    
+
+    private boolean gridLayout = true;
+
     private byte entryBoxConstraint = -1;
-     /*
-        if(entryType == 0){
-            entryString = "NUMERIC";
-        } else if(entryType == 1){
-            entryString = "ALPHA";
-        } else if(entryType == 2){
-            entryString = "ALPHANUMERIC";
-        } else if(entryType == 3){
-            entryString = "DECIMAL";
-        } else if(entryType == 4){
-            entryString = "DOLLARCENTS";
-        } else if(entryType == 5){
-            entryString = "DATE";
-        } else if(entryType == 6){
-            entryString = "PHONENUMBER";
-        }
-    */
+    /*
+     if(entryType == 0){
+     entryString = "NUMERIC";
+     } else if(entryType == 1){
+     entryString = "ALPHA";
+     } else if(entryType == 2){
+     entryString = "ALPHANUMERIC";
+     } else if(entryType == 3){
+     entryString = "DECIMAL";
+     } else if(entryType == 4){
+     entryString = "DOLLARCENTS";
+     } else if(entryType == 5){
+     entryString = "DATE";
+     } else if(entryType == 6){
+     entryString = "PHONENUMBER";
+     }
+     */
     // these all need to be same length
     private int[] listItemIds = null;
     private String[] listItems = null;
     private byte[] listItemFaces = null;
     private String[] listImages = null;
-    private int listTextColor = 0xefefef;
 
     private String[] escapeText = null;
     private byte[] escapeIDs = null;
-    private int escTextColor = 0xefefef;   // text color or any other default color  
+
+    private String bannerText = null;
+    private byte bannerStyle = 0;
+    private byte bannerOperation = 0;
 
     /**
      * @return the entryBoxEnabled
@@ -166,8 +168,6 @@ public class LWEATActionDTO extends LWDTO
         };
     }
 
-
-
     /**
      * @return the listItemIds
      */
@@ -233,22 +233,6 @@ public class LWEATActionDTO extends LWDTO
     }
 
     /**
-     * @return the listTextColor
-     */
-    public int getListTextColor()
-    {
-        return listTextColor;
-    }
-
-    /**
-     * @param listTextColor the listTextColor to set
-     */
-    public void setListTextColor(int listTextColor)
-    {
-        this.listTextColor = listTextColor;
-    }
-
-    /**
      * @return the escapeIDs
      */
     public byte[] getEscapeIDs()
@@ -262,22 +246,6 @@ public class LWEATActionDTO extends LWDTO
     public void setEscapeIDs(byte[] escapeIDs)
     {
         this.escapeIDs = escapeIDs;
-    }
-
-    /**
-     * @return the escTextColor
-     */
-    public int getEscTextColor()
-    {
-        return escTextColor;
-    }
-
-    /**
-     * @param escTextColor the escTextColor to set
-     */
-    public void setEscTextColor(int escTextColor)
-    {
-        this.escTextColor = escTextColor;
     }
 
     /**
@@ -326,5 +294,52 @@ public class LWEATActionDTO extends LWDTO
     public void setEntryBoxConstraint(byte entryBoxConstraint)
     {
         this.entryBoxConstraint = entryBoxConstraint;
+    }
+
+    public void setBanner(String bannerText, byte bannerStyle, byte bannerOperation)
+    {
+        this.bannerText = bannerText;
+        this.bannerStyle = bannerStyle;
+        this.bannerOperation = bannerOperation;
+    }
+
+    /**
+     * @return the bannerText
+     */
+    public String getBannerText()
+    {
+        return bannerText;
+    }
+
+    /**
+     * @return the bannerStyle
+     */
+    public byte getBannerStyle()
+    {
+        return bannerStyle;
+    }
+
+    /**
+     * @return the bannerOperation
+     */
+    public byte getBannerOperation()
+    {
+        return bannerOperation;
+    }
+
+    /**
+     * @return the gridLayout
+     */
+    public boolean isGridLayout()
+    {
+        return gridLayout;
+    }
+
+    /**
+     * @param gridLayout the gridLayout to set
+     */
+    public void setGridLayout(boolean gridLayout)
+    {
+        this.gridLayout = gridLayout;
     }
 }

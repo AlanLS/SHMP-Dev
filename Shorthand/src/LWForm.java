@@ -5,9 +5,9 @@ import com.sun.lwuit.Container;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Image;
 import com.sun.lwuit.Label;
+import com.sun.lwuit.MenuBar;
 import com.sun.lwuit.layouts.BorderLayout;
 import com.sun.lwuit.plaf.Style;
-import jg.Resources;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,8 +29,6 @@ abstract public class LWForm extends Form
     protected Command[] entryOptions;
     protected Command[] currentActiveOptions;
 
-    protected String backReturnText = "";
-
     public LWForm(LWDTO _dto)
     {
         super();
@@ -41,7 +39,7 @@ abstract public class LWForm extends Form
         getStyle().setBgColor(dto.getFormBGColor());
         //
         String bgImgName = dto.getFormBGImageName();
-        if ((bgImgName != null) && (bgImgName.isEmpty()==false))
+        if ((bgImgName != null) && (bgImgName.isEmpty() == false))
         {
             javax.microedition.lcdui.Image img = RecordManager.getImage(bgImgName);
             Image lwImg = Image.createImage(img);
@@ -49,14 +47,14 @@ abstract public class LWForm extends Form
             getStyle().setBackgroundType(Style.BACKGROUND_IMAGE_ALIGNED_CENTER);
             int[] splashRGB = new int[1];
             img.getRGB(CustomCanvas.splashRGB, 0, 1, 1, 1, 1, 1);
-            getStyle().setBgColor(splashRGB[0]); // overrides  
+            getStyle().setBgColor(splashRGB[0]);
         }
         //
-        setTitleComponent();
+        createTitleComponent();
         //
-        setSecondaryHeader();
+        createSecondaryHeader();
         //
-        setBackCommand(new Command(dto.getBackText()));
+        setBackCommand(new Command(Constants.options[dto.getBackID()], dto.getBackID()));
         addCommand(getBackCommand());
         //
         setOptions();
@@ -70,20 +68,18 @@ abstract public class LWForm extends Form
 
     protected void setMenuBarLAF()
     {
+        MenuBar m = this.getMenuBar();
+        //
         Style s = new Style(this.titleStyle);
-        s.setBackgroundGradientStartColor(dto.getHdrBGColor());
-        s.setBgColor(dto.getHdrBGColor());
-        s.setFgColor(dto.getHdrFGColor());
-        getMenuBar().setUnselectedStyle(s);
-        Style ss = new Style(s);
-        ss.setBackgroundGradientStartColor(ss.getBackgroundGradientEndColor());
-        ss.setBackgroundGradientEndColor(dto.getHdrBGColor());
-        getMenuBar().setPressedStyle(ss);
-        Style sss = new Style(ss);
-        getMenuBar().setSelectedStyle(sss);
-        setMenuCellRenderer(new LWRendererMenuCell());
+        m.setSelectedStyle(s);
+        m.setUnselectedStyle(s);
+        m.setPressedStyle(s);
+        m.setHeight(dto.getBarHeights());
+        m.setPreferredH(dto.getBarHeights());
+        //
         LWRendererMenuCell rmc = new LWRendererMenuCell();
-        rmc.setFocusColor(dto.getHighlightColor());
+        setMenuCellRenderer(rmc);
+        rmc.setFocusColor(dto.getMenuHighlightColor());
         getMenuBar().setMenuCellRenderer(rmc);
     }
 
@@ -144,10 +140,17 @@ abstract public class LWForm extends Form
         repaint();
     }
 
-    private void setSecondaryHeader()
+    private void createSecondaryHeader()
     {
         Label secHdr = new Label(dto.getSecHdrText());
+        secHdr.setHeight(dto.getBarHeights());
+        secHdr.setPreferredH(dto.getBarHeights());
+        secHdr.setFocusable(false);
+        secHdr.setHeight(dto.getBarHeights());
         Style s = new Style(titleStyle);
+        titleStyle.setBackgroundGradientStartColor(0xFFFFFF);
+        titleStyle.setBackgroundGradientEndColor(dto.getSHdrBGColor());
+        titleStyle.setBackgroundType(Style.BACKGROUND_GRADIENT_LINEAR_VERTICAL);
         s.setBgColor(dto.getSHdrBGColor());
         s.setFgColor(dto.getSHdrFGColor());
         s.setAlignment(LEFT);
@@ -159,6 +162,7 @@ abstract public class LWForm extends Form
             javax.microedition.lcdui.Image img = RecordManager.getImage(sHIN);
             if (img != null)
             {
+                int sz = dto.getBarHeights() - 2;
                 lwImg = Image.createImage(img);
                 secHdr.setIcon(lwImg);
             }
@@ -170,12 +174,19 @@ abstract public class LWForm extends Form
         }
     }
 
-    private void setTitleComponent()
+    private void createTitleComponent()
     {
         titleStyle = new Style(getTitleComponent().getStyle());
-        titleStyle.setBackgroundGradientStartColor(dto.getHdrBGColor());
+        titleStyle.setMargin(0, 0);
+        titleStyle.setBackgroundGradientStartColor(0xFFFFFF);
+        titleStyle.setBackgroundGradientEndColor(dto.getHdrBGColor());
+        titleStyle.setBackgroundType(Style.BACKGROUND_GRADIENT_LINEAR_VERTICAL);
         titleStyle.setBgColor(dto.getHdrBGColor());
         titleStyle.setFgColor(dto.getHdrFGColor());
+        getTitleArea().setHeight(dto.getBarHeights());
+        getTitleArea().setPreferredH(dto.getBarHeights());
+        getTitleArea().removeAll();
+        getTitleArea().setFocusable(false);
         getTitleArea().removeAll();
         Container c = new Container(new BorderLayout());
         getTitleArea().addComponent(BorderLayout.CENTER, c);
@@ -186,7 +197,8 @@ abstract public class LWForm extends Form
             javax.microedition.lcdui.Image img = RecordManager.getImage(sHIN);
             if (img != null)
             {
-                lwImg = Image.createImage(img);
+                int sz = dto.getBarHeights() - 2;
+                lwImg = Image.createImage(img).scaledSmallerRatio(sz, sz);
             }
         }
         setThree(lwImg, dto.getHdrText(), dto.getHdrDataSMS(), c);

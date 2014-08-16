@@ -6,7 +6,8 @@
 abstract public class LWDTO
 {
 
-    private String hdrText = null;
+    private int barHeights = 20;
+    private String hdrText = "Message+";
     private String hdrIconName = "Message+header";
     private String hdrDataSMS = null;
     //
@@ -20,23 +21,30 @@ abstract public class LWDTO
 
 //
     //These can be provided elsewhere possibly as statics if need be   
-    private int hdrBGColor = 0x0000FF;   // or any other default color
-    private int hdrFGColor = 0xFFFFFF;   // text color or any other default color
+    private int hdrBGColor = 0xB8B8B8;   // or any other default color
+    private int hdrTextColor = 0x554344;   // text color or any other default color
 //
     private int sHdrBGColor = hdrBGColor;   // or any other default color
-    private int sHdrFGColor = hdrFGColor;   // text color or any other default color
+    private int sHdrTextColor = hdrTextColor;   // text color or any other default color
 //
-    private int FormBGColor = 0xE0E0E0;   // text color or any other default color
+    private int FormBGColor = 0xFFFFFF;   // text color or any other default color
     //private int FormBGImageID = 1;   // resource id# (RecordStore Storage?)
     private String FormBGImageName = "Message+bg";   // resource id# (RecordStore Storage?)
     //
-    private String backText = "Back";   // resource id# (RecordStore Storage?)
+
     private byte backID = -1;   // resource id# (RecordStore Storage?)
 //
     private int menuBarBGColor = hdrBGColor;   // or any other default color
-    private int menuBarFGColor = hdrFGColor;   // text color or any other default color
-    private int highlightColor = 0xFF0000; // box around selection (list & escape)
-//     
+    private int menuBarFGColor = hdrTextColor;   // text color or any other default color
+    private int highlightColor = 0x8CC63F; // box around selection (list & escape)
+    private int menuHighlightColor = 0xEEBA41; // box around selection (list & escape)
+//      public static void drawBanner(String bannerText, byte style, boolean isSelected, Graphics g,boolean isBannerMove) {
+
+    private int bannerBGColor = hdrBGColor;   // or any other default color
+    private int bannerTextColor = hdrTextColor;
+
+    private int escTextColor = 0xefefef;   // text color or any other default color  
+    private int listTextColor = 0xefefef;
 
     /**
      * @return the hdrText
@@ -86,7 +94,6 @@ abstract public class LWDTO
         this.secHdrText = secHdrText;
     }
 
-  
     /**
      * @return the hdrBGColor
      */
@@ -104,19 +111,19 @@ abstract public class LWDTO
     }
 
     /**
-     * @return the hdrFGColor
+     * @return the hdrTextColor
      */
     public int getHdrFGColor()
     {
-        return hdrFGColor;
+        return hdrTextColor;
     }
 
     /**
-     * @param hdrFGColor the hdrFGColor to set
+     * @param hdrFGColor the hdrTextColor to set
      */
     public void setHdrFGColor(int hdrFGColor)
     {
-        this.hdrFGColor = hdrFGColor;
+        this.hdrTextColor = hdrFGColor;
     }
 
     /**
@@ -136,19 +143,19 @@ abstract public class LWDTO
     }
 
     /**
-     * @return the sHdrFGColor
+     * @return the sHdrTextColor
      */
     public int getSHdrFGColor()
     {
-        return sHdrFGColor;
+        return sHdrTextColor;
     }
 
     /**
-     * @param sHdrFGColor the sHdrFGColor to set
+     * @param sHdrFGColor the sHdrTextColor to set
      */
     public void setSHdrFGColor(int sHdrFGColor)
     {
-        this.sHdrFGColor = sHdrFGColor;
+        this.sHdrTextColor = sHdrFGColor;
     }
 
     /**
@@ -165,22 +172,6 @@ abstract public class LWDTO
     public void setFormBGColor(int FormBGColor)
     {
         this.FormBGColor = FormBGColor;
-    }
-
-    /**
-     * @return the backText
-     */
-    public String getBackText()
-    {
-        return backText;
-    }
-
-    /**
-     * @param backText the backText to set
-     */
-    public void setBackText(String backText)
-    {
-        this.backText = backText;
     }
 
     /**
@@ -343,9 +334,99 @@ abstract public class LWDTO
         this.secHdrIconName = secHdrIconName;
     }
 
-    class LWBannerClass
+    /**
+     * @return the menuHighlightColor
+     */
+    public int getMenuHighlightColor()
     {
-
+        return menuHighlightColor;
     }
 
+    /**
+     * @param menuHighlightColor the menuHighlightColor to set
+     */
+    public void setMenuHighlightColor(int menuHighlightColor)
+    {
+        this.menuHighlightColor = menuHighlightColor;
+    }
+
+    /**
+     * @return the bannerBGColor
+     */
+    public int getBannerBGColor()
+    {
+        return bannerBGColor;
+    }
+
+    /**
+     * @param bannerBGColor the bannerBGColor to set
+     */
+    public void setBannerBGColor(int bannerBGColor)
+    {
+        this.bannerBGColor = bannerBGColor;
+    }
+
+    /**
+     * @return the bannerTextColor
+     */
+    public int getBannerTextColor()
+    {
+        return bannerTextColor;
+    }
+
+    /**
+     * @param bannerTextColor the bannerTextColor to set
+     */
+    public void setBannerTextColor(int bannerTextColor)
+    {
+        this.bannerTextColor = bannerTextColor;
+    }
+
+    /**
+     * @return the listTextColor
+     */
+    public int getListTextColor()
+    {
+        return listTextColor;
+    }
+
+    /**
+     * @param listTextColor the listTextColor to set
+     */
+    public void setListTextColor(int listTextColor)
+    {
+        this.listTextColor = listTextColor;
+    }
+
+    /**
+     * @return the escTextColor
+     */
+    public int getEscTextColor()
+    {
+        return escTextColor;
+    }
+
+    /**
+     * @param escTextColor the escTextColor to set
+     */
+    public void setEscTextColor(int escTextColor)
+    {
+        this.escTextColor = escTextColor;
+    }
+
+    /**
+     * @return the barHeights
+     */
+    public int getBarHeights()
+    {
+        return barHeights;
+    }
+
+    /**
+     * @param barHeights the barHeights to set
+     */
+    public void setBarHeights(int barHeights)
+    {
+        this.barHeights = barHeights;
+    }
 }

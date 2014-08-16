@@ -167,7 +167,7 @@ public class LWListModel implements ListModel
     /**
      * @inheritDoc
      */
-    public void removeItem( int index)
+    public void removeItem(int index)
     {
         if ((index < getSize()) && (index >= 0))
         {
@@ -202,13 +202,16 @@ public class LWListModel implements ListModel
         int oldIndex = selectedIndex;
         selectedIndex = (Math.max(index, 0));
         selectedIndex = (Math.min(index, Math.max(0, getSize() - 1)));
-        selectionListener.fireSelectionEvent(oldIndex, selectedIndex);
+        if (selectedIndex != oldIndex)
+        {
+            selectionListener.fireSelectionEvent(oldIndex, selectedIndex);
+        }
     }
 
     /**
      * @inheritDoc
      */
-    public void addDataChangedListener( DataChangedListener l)
+    public void addDataChangedListener(DataChangedListener l)
     {
         dataListener.addListener(l);
     }
