@@ -53,8 +53,9 @@ public class LWEATActionDTO extends LWDTO
     private byte[] escapeIDs = null;
 
     private String bannerText = null;
-    private byte bannerStyle = 0;
-    private byte bannerOperation = 0;
+    private byte bannerID = -1;
+    private byte bannerStyle = LWDTO.BANNER_STYLE_SCROLL;
+    private byte bannerOperation = LWDTO.BANNER_OPERATIONS_HIGHLIGHT_SELECT;// BANNER_OPERATIONS_NO_HIGHLIGHT;
 
     /**
      * @return the entryBoxEnabled
@@ -296,11 +297,12 @@ public class LWEATActionDTO extends LWDTO
         this.entryBoxConstraint = entryBoxConstraint;
     }
 
-    public void setBanner(String bannerText, byte bannerStyle, byte bannerOperation)
+    public void setBanner(String bannerText, byte bannerStyle, byte bannerOperation, byte bannerID)
     {
         this.bannerText = bannerText;
         this.bannerStyle = bannerStyle;
         this.bannerOperation = bannerOperation;
+        this.bannerID = bannerID;
     }
 
     /**
@@ -341,5 +343,13 @@ public class LWEATActionDTO extends LWDTO
     public void setGridLayout(boolean gridLayout)
     {
         this.gridLayout = gridLayout;
+    }
+
+    /**
+     * @return the bannerID
+     */
+    public byte getBannerID()
+    {
+        return bannerID;
     }
 }

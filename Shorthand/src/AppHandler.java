@@ -1351,6 +1351,7 @@ public class AppHandler {
         lWEATActionDTO.setListItems(pName);
         lWEATActionDTO.setListItemIds(new int[pName.length]);
         lWEATActionDTO.setListImages(pLogo);
+        lWEATActionDTO.setGridLayout(isGrid);
 //        _responseDto.setChatUnReadCount(unreadChatCount);
         return lWEATActionDTO;
     }

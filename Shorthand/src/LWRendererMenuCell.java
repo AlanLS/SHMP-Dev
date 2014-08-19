@@ -4,7 +4,6 @@ import com.sun.lwuit.Component;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.List;
 import com.sun.lwuit.list.ListCellRenderer;
-import com.sun.lwuit.plaf.Border;
 import com.sun.lwuit.plaf.Style;
 
 /*
@@ -19,47 +18,60 @@ import com.sun.lwuit.plaf.Style;
 public class LWRendererMenuCell extends Label implements ListCellRenderer
 {
 
-    private final Label focus;
+    private Label focus = null;
     private int focusColor = 0xCC862A;
 
     // private KlinkMenuCell focus = new KlinkMenuCell();
     public LWRendererMenuCell()
     {
         super();
-        Style s = new Style(getStyle());
-        s.setMargin(1, 1);
-        s.setBorder(null);
-        s.setBgTransparency(0);
+        
+        Style s = new Style(getUnselectedStyle());
+        s.setMargin(0, 0, 0, 0);
+        s.setPadding(1, 1, 5, 5);
         s.setFont(LWFonts.getFont(LWFonts.StandardFontID));
-        setSelectedStyle(s);
         setUnselectedStyle(s);
+        //
+        s = new Style(getSelectedStyle());
+        s.setMargin(0, 0, 0, 0);
+        s.setPadding(1, 1, 5, 5);
+        s.setFont(LWFonts.getFont(LWFonts.StandardFontID));
+        s.setBackgroundType(Style.BACKGROUND_NONE);
+        s.setBgTransparency(0);
+        setSelectedStyle(s);
+        //
         focus = new Label();
-        Style ss = new Style(s);
-        //ss.setBackgroundGradientStartColor(0xFFFFFF);
-        //ss.setBackgroundType(Style.BACKGROUND_GRADIENT_LINEAR_VERTICAL);
-        ss.setMargin(0, 0);
-        ss.setBgTransparency(200);
-        focus.setSelectedStyle(ss);
-        focus.setUnselectedStyle(ss);
+        
+       //s = new Style(focus.getUnselectedStyle());
+       // s.setMargin(0, 0, 0, 0);
+       // s.setPadding(1, 1, 5, 5);
+       // focus.setUnselectedStyle(s);
+        
+        s = new Style(focus.getSelectedStyle());
+        s.setMargin(0, 0, 0, 0);
+        s.setPadding(1, 1, 5, 5);
+        s.setBgTransparency(200);
+        focus.setSelectedStyle(s);
+        focus.setUnselectedStyle(s);
         setFocusColor(focusColor);
     }
 
     public void setFocusColor(int color)
     {
-        focusColor = color;
-        Style s = focus.getStyle();
-        s.setBgColor(focusColor);
-        focus.setSelectedStyle(s);
+        Style s = focus.getSelectedStyle();
+        s.setBgColor(color);
+        s.setBackgroundGradientEndColor(color);
         focus.setUnselectedStyle(s);
+       
     }
 
     public void setTextColor(int color)
     {
-        Style s = getStyle();
+        Style s = getUnselectedStyle();
         s.setFgColor(color);
-        setSelectedStyle(s);
-        setUnselectedStyle(s);
-    }
+        s = getSelectedStyle();
+        s.setFgColor(color);
+   }
 
     @Override
     public void refreshTheme()
@@ -81,14 +93,7 @@ public class LWRendererMenuCell extends Label implements ListCellRenderer
     {
         setFocus(isSelected);
         Command c = (Command) value;
-        // if (c.getCommandName().equalsIgnoreCase("Back"))
-        // {  
-        //     setText(null);
-        // } 
-        // else
-        // {
         setText(c.getCommandName());
-        // }
         return this;
     }
 

@@ -1,3 +1,4 @@
+
 import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.List;
@@ -26,8 +27,9 @@ public class Shorthand extends MIDlet
                 com.sun.lwuit.util.Resources res = null;
                 try
                 {
-                    res = com.sun.lwuit.util.Resources.open("/NoStyle.res");
+                    res = com.sun.lwuit.util.Resources.open("/Style.res");
                     UIManager.getInstance().setThemeProps(res.getTheme(res.getThemeResourceNames()[0]));
+                    UIManager.getInstance().setResourceBundle(res.getL10N("Lang", "en"));  
                 }
                 catch (final IOException e)
                 {
@@ -35,27 +37,25 @@ public class Shorthand extends MIDlet
                 }
                 finally
                 {
+                    res = null;
                     UIManager.getInstance().getLookAndFeel().setReverseSoftButtons(true);
                     Display.getInstance().setCommandBehavior(Display.COMMAND_BEHAVIOR_SOFTKEY);
                     Display.getInstance().setThirdSoftButton(false);
                     Display.getInstance().setPureTouch(false);
                     Display.getInstance().setTouchScreenDevice(false);
-                    res = null;
-                }
-
+                    
                 // KNetworkManager.getInstance().start();
-                // various Object static settings
-                //
-                TextField.setReplaceMenuDefault(false);
-                TextField.setUseNativeTextInput(false);
-                TextField.setQwertyAutoDetect(true);
-                
-                //
-                List.setDefaultIgnoreFocusComponentWhenUnfocused(true);
+                    // various Object static settings
+                    //
+                   // TextField.setReplaceMenuDefault(false);
+                   // TextField.setUseNativeTextInput(false);
+                   // TextField.setQwertyAutoDetect(true);
+                    //
+                    List.setDefaultIgnoreFocusComponentWhenUnfocused(true);
+                }
                 //
             }
         }
-
         if (canvas == null)
         {
             canvas = new ShortHandCanvas(this);

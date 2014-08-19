@@ -6,7 +6,14 @@
 abstract public class LWDTO
 {
 
-    private int barHeights = 20;
+    static final byte BANNER_STYLE_SCROLL = 1;
+    static final byte BANNER_STYLE_FIXED = 2;
+    //
+    static final byte BANNER_OPERATIONS_HIGHLIGHT = 1;
+    static final byte BANNER_OPERATIONS_HIGHLIGHT_SELECT = 2;
+    static final byte BANNER_OPERATIONS_NO_HIGHLIGHT = 3;
+    //
+    private int barHeights = 25;
     private String hdrText = "Message+";
     private String hdrIconName = "Message+header";
     private String hdrDataSMS = null;
@@ -18,30 +25,28 @@ abstract public class LWDTO
     private byte[] optIDEsc = null;
     private byte[] optIDEntry = null;
     //
-
-//
     //These can be provided elsewhere possibly as statics if need be   
     private int hdrBGColor = 0xB8B8B8;   // or any other default color
     private int hdrTextColor = 0x554344;   // text color or any other default color
 //
     private int sHdrBGColor = hdrBGColor;   // or any other default color
-    private int sHdrTextColor = hdrTextColor;   // text color or any other default color
+    private int sHdrTextColor = getHdrTextColor();   // text color or any other default color
 //
     private int FormBGColor = 0xFFFFFF;   // text color or any other default color
     //private int FormBGImageID = 1;   // resource id# (RecordStore Storage?)
     private String FormBGImageName = "Message+bg";   // resource id# (RecordStore Storage?)
     //
-
     private byte backID = -1;   // resource id# (RecordStore Storage?)
-//
+    //
     private int menuBarBGColor = hdrBGColor;   // or any other default color
-    private int menuBarFGColor = hdrTextColor;   // text color or any other default color
-    private int highlightColor = 0x8CC63F; // box around selection (list & escape)
+    private int menuBarFGColor = getHdrTextColor();   // text color or any other default color
+    private int highlightColor = 0x006600; // box around selection (list & escape)
+
     private int menuHighlightColor = 0xEEBA41; // box around selection (list & escape)
 //      public static void drawBanner(String bannerText, byte style, boolean isSelected, Graphics g,boolean isBannerMove) {
 
-    private int bannerBGColor = hdrBGColor;   // or any other default color
-    private int bannerTextColor = hdrTextColor;
+    private int bannerBGColor = 0xEEF208;   // or any other default color
+    private int bannerTextColor = 0x070707;
 
     private int escTextColor = 0xefefef;   // text color or any other default color  
     private int listTextColor = 0xefefef;
@@ -111,22 +116,6 @@ abstract public class LWDTO
     }
 
     /**
-     * @return the hdrTextColor
-     */
-    public int getHdrFGColor()
-    {
-        return hdrTextColor;
-    }
-
-    /**
-     * @param hdrFGColor the hdrTextColor to set
-     */
-    public void setHdrFGColor(int hdrFGColor)
-    {
-        this.hdrTextColor = hdrFGColor;
-    }
-
-    /**
      * @return the shdrBGColor
      */
     public int getSHdrBGColor()
@@ -140,22 +129,6 @@ abstract public class LWDTO
     public void setSHdrBGColor(int sHdrBGColor)
     {
         this.sHdrBGColor = sHdrBGColor;
-    }
-
-    /**
-     * @return the sHdrTextColor
-     */
-    public int getSHdrFGColor()
-    {
-        return sHdrTextColor;
-    }
-
-    /**
-     * @param sHdrFGColor the sHdrTextColor to set
-     */
-    public void setSHdrFGColor(int sHdrFGColor)
-    {
-        this.sHdrTextColor = sHdrFGColor;
     }
 
     /**
@@ -428,5 +401,31 @@ abstract public class LWDTO
     public void setBarHeights(int barHeights)
     {
         this.barHeights = barHeights;
+    }
+
+    /**
+     * @return the hdrTextColor
+     */
+    public int getHdrTextColor()
+    {
+        return hdrTextColor;
+    }
+
+    /**
+     * @param hdrTextColor the hdrTextColor to set
+     */
+    public void setHdrTextColor(int hdrTextColor)
+    {
+        this.hdrTextColor = hdrTextColor;
+    }
+
+    public int getSHdrTextColor()
+    {
+        return sHdrTextColor;
+    }
+
+    public void setSHdrTextColor(int sHdrTextColor)
+    {
+        this.sHdrTextColor = sHdrTextColor;
     }
 }
