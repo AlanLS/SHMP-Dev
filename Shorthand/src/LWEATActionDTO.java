@@ -50,7 +50,7 @@ public class LWEATActionDTO extends LWDTO
     private String[] listImages = null;
 
     private String[] escapeText = null;
-    private byte[] escapeIDs = null;
+    private int[] escapeIDs = null;
 
     private String bannerText = null;
     private byte bannerID = -1;
@@ -236,7 +236,7 @@ public class LWEATActionDTO extends LWDTO
     /**
      * @return the escapeIDs
      */
-    public byte[] getEscapeIDs()
+    public int[] getEscapeIDs()
     {
         return escapeIDs;
     }
@@ -244,7 +244,7 @@ public class LWEATActionDTO extends LWDTO
     /**
      * @param escapeIDs the escapeIDs to set
      */
-    public void setEscapeIDs(byte[] escapeIDs)
+    public void setEscapeIDs(int[] escapeIDs)
     {
         this.escapeIDs = escapeIDs;
     }

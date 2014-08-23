@@ -431,7 +431,7 @@ public class ProfileHandler {
         lWEATActionDTO.setListItemIds(list.getItemidlist());
         if(null != pparser.getEscapeMenu()){
             lWEATActionDTO.setEscapeText(pparser.getEscapeMenu());
-            lWEATActionDTO.setEscapeIDs(getEscapeId(pparser.getEscapeMenu().length));
+            lWEATActionDTO.setEscapeIDs(getEscapeIdInt(pparser.getEscapeMenu().length));
         }
 //        String[] temp = pparser.getEscapeMenu();
 //        if (null != temp) {
@@ -794,7 +794,7 @@ public class ProfileHandler {
 
             if(null != pparser.getEscapeMenu()){
                 lWEATActionDTO.setEscapeText(pparser.getEscapeMenu());
-                lWEATActionDTO.setEscapeIDs(appendEscapeItemId());
+                lWEATActionDTO.setEscapeIDs(appendEscapeItemIdInt());
                 lWEATActionDTO.setOptIDEsc(GetOptions(-2, null));
                 //lWEATActionDTO.setOptTextEsc(Utilities.GetOptions(GetOptionsString(-2, null)));
             }
@@ -856,6 +856,13 @@ public class ProfileHandler {
         return null;
     }
 
+    private int[] appendEscapeItemIdInt(){
+        String[] temp = pparser.getEscapeMenu();
+        if(null != temp){
+            return getEscapeIdInt(temp.length);
+        }
+        return null;
+    }
 //    private int[] setScContacts(String[] item){
 //        int count = item.length;
 //        int totalCount = 0;
@@ -920,6 +927,15 @@ public class ProfileHandler {
         return itemId;
     }
 
+     private int[] getEscapeIdInt(int count) {
+        int[] itemId = new int[count];
+        for (int i = 0; i < count; i++) {
+            itemId[i] = (byte)-1;
+        }
+        return itemId;
+    }
+    
+    
     /**
      *
      * @param format

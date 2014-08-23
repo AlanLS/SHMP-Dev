@@ -1287,7 +1287,7 @@ public class AppHandler {
 //                    pLogo[pLogo.length-1] = moreApp.getTildIcon();
 //                else pLogo[pLogo.length-1] = moreApp.getLaunchIcon();
 //                lWEATActionDTO.setE(new String[]{moreApp.getTildIcon()});
-                lWEATActionDTO.setEscapeIDs(new byte[1]);
+                lWEATActionDTO.setEscapeIDs(new int[1]);
             }
 
             if (null != pHeader && pHeader.length > 0) {

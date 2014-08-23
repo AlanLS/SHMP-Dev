@@ -1,11 +1,8 @@
 
-import com.sun.lwuit.Command;
 import com.sun.lwuit.Component;
 import com.sun.lwuit.Container;
-import com.sun.lwuit.Form;
 import com.sun.lwuit.Image;
 import com.sun.lwuit.Label;
-import com.sun.lwuit.MenuBar;
 import com.sun.lwuit.layouts.BorderLayout;
 import com.sun.lwuit.plaf.Style;
 
@@ -44,6 +41,8 @@ public class LWHeaderBar extends Container
         {
             titleStyle = new Style();
             titleStyle.setMargin(0, 0, 0, 0);
+            titleStyle.setPadding(Component.TOP, 0);
+            titleStyle.setPadding(Component.BOTTOM, 0);
             titleStyle.setBackgroundGradientStartColor(0xffffff);
             titleStyle.setBackgroundGradientEndColor(bgColor);
             titleStyle.setBackgroundType(Style.BACKGROUND_GRADIENT_LINEAR_VERTICAL);

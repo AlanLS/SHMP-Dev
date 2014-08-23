@@ -1,11 +1,11 @@
 
 import com.sun.lwuit.Command;
-import com.sun.lwuit.Component;
 import com.sun.lwuit.Container;
+import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Image;
-import com.sun.lwuit.Label;
 import com.sun.lwuit.MenuBar;
+import com.sun.lwuit.geom.Dimension;
 import com.sun.lwuit.layouts.BorderLayout;
 import com.sun.lwuit.plaf.Style;
 
@@ -20,6 +20,17 @@ import com.sun.lwuit.plaf.Style;
  */
 abstract public class LWForm extends Form
 {
+
+    private static Dimension screenDimen = null;
+
+    public static Dimension getScreenDimen()
+    {
+        if (screenDimen == null)
+        {
+            screenDimen = new Dimension(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
+        }
+        return screenDimen;
+    }
 
     private LWDTO dto;
 
@@ -146,7 +157,7 @@ abstract public class LWForm extends Form
             addCommand(optList[i]);
         }
         currentActiveOptions = optList;
-        revalidate();
+    
         repaint();
     }
 
@@ -158,38 +169,6 @@ abstract public class LWForm extends Form
             addComponent(BorderLayout.CENTER, new LWHeaderBar(this, LWHeaderBar.BAR_TYPE_SECONDARY_HEADER));
         }
     }
-    /*
-     Label secHdr = new Label(getDto().getSecHdrText());
-     secHdr.setHeight(getDto().getBarHeights());
-     secHdr.setPreferredH(getDto().getBarHeights());
-     secHdr.setFocusable(false);
-     secHdr.setHeight(getDto().getBarHeights());
-     Style s = new Style(titleStyle);
-     titleStyle.setBackgroundGradientStartColor(0xFFFFFF);
-     titleStyle.setBackgroundGradientEndColor(getDto().getSHdrBGColor());
-     titleStyle.setBackgroundType(Style.BACKGROUND_GRADIENT_LINEAR_VERTICAL);
-     s.setBgColor(getDto().getSHdrBGColor());
-     s.setFgColor(getDto().getSHdrTextColor());
-     s.setAlignment(LEFT);
-     secHdr.setUnselectedStyle(s);
-     Image lwImg = null;
-     String sHIN = getDto().getSecHdrIconName();
-     if ((sHIN != null) && (sHIN.isEmpty() == false))
-     {
-     javax.microedition.lcdui.Image img = RecordManager.getImage(sHIN);
-     if (img != null)
-     {
-     int sz = getDto().getBarHeights() - 2;
-     lwImg = Image.createImage(img);
-     secHdr.setIcon(lwImg);
-     }
-     }
-     if (((secHdr.getText() != null) && (secHdr.getText().isEmpty() == false))
-     || (secHdr.getIcon() != null))
-     {
-     addComponent(BorderLayout.NORTH, secHdr);
-     }
-     */
 
     private void createAndSetHeaderComponent()
     {
@@ -201,6 +180,16 @@ abstract public class LWForm extends Form
         ta.addComponent(BorderLayout.CENTER, new LWHeaderBar(this, LWHeaderBar.BAR_TYPE_HEADER));
     }
 
+    public int getScreenW()
+    {
+        return getScreenDimen().getWidth();
+    }
+
+    public int getScreenH()
+    {
+        return getScreenDimen().getHeight();
+    }
+
     /**
      * @return the dto
      */
@@ -208,4 +197,5 @@ abstract public class LWForm extends Form
     {
         return dto;
     }
+
 }

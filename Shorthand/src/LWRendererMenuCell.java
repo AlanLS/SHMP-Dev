@@ -25,7 +25,6 @@ public class LWRendererMenuCell extends Label implements ListCellRenderer
     public LWRendererMenuCell()
     {
         super();
-        
         Style s = new Style(getUnselectedStyle());
         s.setMargin(0, 0, 0, 0);
         s.setPadding(1, 1, 5, 5);
@@ -41,12 +40,10 @@ public class LWRendererMenuCell extends Label implements ListCellRenderer
         setSelectedStyle(s);
         //
         focus = new Label();
-        
        //s = new Style(focus.getUnselectedStyle());
-       // s.setMargin(0, 0, 0, 0);
-       // s.setPadding(1, 1, 5, 5);
-       // focus.setUnselectedStyle(s);
-        
+        // s.setMargin(0, 0, 0, 0);
+        // s.setPadding(1, 1, 5, 5);
+        // focus.setUnselectedStyle(s);
         s = new Style(focus.getSelectedStyle());
         s.setMargin(0, 0, 0, 0);
         s.setPadding(1, 1, 5, 5);
@@ -62,7 +59,6 @@ public class LWRendererMenuCell extends Label implements ListCellRenderer
         s.setBgColor(color);
         s.setBackgroundGradientEndColor(color);
         focus.setUnselectedStyle(s);
-       
     }
 
     public void setTextColor(int color)
@@ -71,9 +67,9 @@ public class LWRendererMenuCell extends Label implements ListCellRenderer
         s.setFgColor(color);
         s = getSelectedStyle();
         s.setFgColor(color);
-   }
+    }
 
-    @Override
+    
     public void refreshTheme()
     {
         super.refreshTheme();
@@ -84,7 +80,7 @@ public class LWRendererMenuCell extends Label implements ListCellRenderer
      * Overridden to do nothing and remove a performance issue where renderer
      * changes perform needless repaint calls
      */
-    @Override
+    
     public void repaint()
     {
     }
